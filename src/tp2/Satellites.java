@@ -1,11 +1,10 @@
 package tp2;
 
-public class Satellites {
+public class Satellites extends CorpsCeleste {
     
-    private String nom;
-    
-    
-    public Satellites(String nom){
-        this.nom = nom;
+    private String planetesLiees;
+    public Satellites(int ID,String nom,double Rayon,String planetesLiees){
+        super(ID,nom,Rayon);
+        this.planetesLiees = planetesLiees;
     }
 }

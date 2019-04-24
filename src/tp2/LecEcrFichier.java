@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class LecEcrFichier {
     public static ArrayList<Planetes> listePlanetes = new ArrayList();
-       public static String[][] initTableau(String listePlanetes[][]) throws FileNotFoundException, IOException{
+       public static ArrayList initTableau(ArrayList listePlanetes) throws FileNotFoundException, IOException{
            
         
         BufferedReader lecture = new BufferedReader(new FileReader ("420-202-RE - H19 - Annexe - Planètes et lunes.xlsx"));
@@ -19,19 +19,13 @@ public class LecEcrFichier {
                 System.out.println(ligne);
             }
         }
-         for(int i = 0;i < listePlanetes[0].length;i++){
-            for(int j = 0;j < listePlanetes.length;j++){
-                System.out.println(listePlanetes[i][j]);
-            }
-             System.out.println("");
+         for(int i = 0;i < listePlanetes.size();i++){
+            
+       
             }
         
         lecture.close();
      
-        return listePlanetes;
-    }
-    public static String[][] trierTableau(String listePlanetes[][]){
-        
         return listePlanetes;
     }
 }

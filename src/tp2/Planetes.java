@@ -1,8 +1,6 @@
 package tp2;
 
-public class Planetes {
-    
-    private double rayon;
+public class Planetes extends CorpsCeleste{
     private boolean vie;
     private boolean eau;
     private double gravite;
@@ -11,10 +9,10 @@ public class Planetes {
     private double TempMoy;
     private double TempMin;
     private String Satellites;
+    private double Compatibilite;
     
-    
-    public Planetes(double rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites){
-        this.rayon = rayon;
+    public Planetes(int ID,String nom,double Rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites,double Compatibilite){
+        super(ID,nom,Rayon);
         this.vie = vie;
         this.eau = eau;
         this.gravite = gravite;
@@ -23,5 +21,6 @@ public class Planetes {
         this.TempMoy = TempMoy;
         this.TempMin = TempMin;
         this.Satellites = Satellites;
+        this.Compatibilite = Compatibilite;
     }
 }
