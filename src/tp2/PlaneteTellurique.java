@@ -1,6 +1,6 @@
 package tp2;
 
-public class Planetes extends CorpsCeleste{
+public class PlaneteTellurique extends CorpsCeleste{
     private boolean vie;
     private boolean eau;
     private double gravite;
@@ -11,8 +11,8 @@ public class Planetes extends CorpsCeleste{
     private String Satellites;
     private double Compatibilite;
     
-    public Planetes(int ID,String nom,double Rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites,double Compatibilite){
-        super(ID,nom,Rayon);
+    public PlaneteTellurique(int ID,String nom,double Rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites,double Compatibilite){
+//        super(ID,nom,Rayon);
         this.vie = vie;
         this.eau = eau;
         this.gravite = gravite;
