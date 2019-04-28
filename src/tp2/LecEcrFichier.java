@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LecEcrFichier {
-    public static ArrayList<Planetes> listePlanetes = new ArrayList();
+    /*public static ArrayList<Planetes> listePlanetes = new ArrayList();
        public static ArrayList initTableau(ArrayList listePlanetes) throws FileNotFoundException, IOException{
            
         
@@ -27,5 +27,5 @@ public class LecEcrFichier {
         lecture.close();
      
         return listePlanetes;
-    }
+    }*/
 }
