@@ -11,8 +11,8 @@ public class PlaneteTellurique extends CorpsCeleste{
     private String Satellites;
     private double Compatibilite;
     
-    public PlaneteTellurique(int ID,String nom,double Rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites,double Compatibilite){
-        super(ID,nom,Rayon);
+    public PlaneteTellurique(int ID,String nom,double rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites,double Compatibilite){
+        super(ID,nom,rayon);
         this.vie = vie;
         this.eau = eau;
         this.gravite = gravite;

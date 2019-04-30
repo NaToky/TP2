@@ -1,21 +1,14 @@
 package tp2;
 
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class ConfigGuide {
-    
-    enum Type{
-        ASTEROIDE,
-        EPARS,
-        CUBEWANO,
-        AUTRE
-        
-    }
-    Scanner entree = new Scanner(System.in);
-    
-    int ID = 0;
 
+    Scanner entree = new Scanner(System.in);
+
+    int ID = 0;
 
     boolean boucle = true;
 
@@ -83,8 +76,8 @@ public class ConfigGuide {
     }
 
     private int getID() {
-        ID ++;
-        return (1 + ID);
+        ID++;
+        return (ID);
     }
 
     private void afficherTypeDAstre() {
@@ -147,12 +140,12 @@ public class ConfigGuide {
             try {
                 rayon = Double.parseDouble(entree.nextLine());
                 System.out.println("");
-                boucle = false;
                 while (rayon <= 0) {
-                    System.out.println("Veuillez entrer un nombre entier positif: ");
+                    System.out.print("Veuillez entrer un nombre entier positif: ");
                     rayon = Double.parseDouble(entree.nextLine());
-                    System.out.println("");
+                    System.out.print("");
                 }
+                boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
                 System.out.println("Veuillez entrer un nombre entier positif: ");
@@ -161,40 +154,112 @@ public class ConfigGuide {
         boucle = true;
         return rayon;
     }
-    
-    private String getPlaneteLiee(){
+
+    private String getPlaneteLiee() {
         String planeteLiee;
         planeteLiee = entree.nextLine();
         System.out.println("");
         return planeteLiee;
     }
+
+    private String[] getTabPlanetesLiees() {
+        int nbrPlanetes = 0;
+        String nomPlanetesLiees;
+        while (boucle = true) {
+            try {
+                nbrPlanetes = Integer.parseInt(entree.nextLine());
+                System.out.println("");
+                while (nbrPlanetes < 0 || nbrPlanetes > 10) {
+                    System.out.print("Veuillez entrer un nombre de planetes liees valide (entre 1 et 10): ");
+                    nbrPlanetes = Integer.parseInt(entree.nextLine());
+                    System.out.println("");
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre de planetes liees valide (entre 1 et 10): ");
+            }
+        }
+        boucle = true;
+        String[] tabPlanetes = new String[nbrPlanetes];
+        for (int i = 0; i < nbrPlanetes; i++) {
+            System.out.print("Veuillez entrer le nom de la planete " + (i + 1) + ": ");
+            nomPlanetesLiees = entree.nextLine();
+            tabPlanetes[i] = nomPlanetesLiees;
+
+        }
+        return tabPlanetes;
+    }
+
+    private String getType() {
+        String type, typeMaj;
+        type = entree.nextLine();
+        System.out.println("");
+        typeMaj = type.toUpperCase();
+        while (!"ASTEROIDE".equals(typeMaj) && !"EPARS".equals(typeMaj) && !"CUBEWANO".equals(typeMaj) && !"Autre".equals(typeMaj)) {
+            System.out.print("Veuillez entrer un nom de planete liee valide (ASTEROIDE, EPARS, CUBEWANO ou AUTRE)");
+            type = entree.nextLine();
+            System.out.println("");
+            typeMaj = type.toUpperCase();
+        }
+        System.out.println("");
+        return type;
+    }
+
+    private double getMasse() {
+        double masse;
+        masse = Double.parseDouble(entree.nextLine());
+        System.out.println("");
+        return masse;
+    }
+
     private void entrerDonneesPlanetesTelluriques() {
         String nom;
         double rayon;
-        System.out.print("Veuillez entrer le nom de la planeteTellurique decouverte: ");
+        System.out.print("Veuillez entrer le nom de la planete tellurique decouverte: ");
         nom = getNom();
-        System.out.print("Veuillez entrer le rayon de la planeteTellurique decouverte (en km): ");
+        System.out.print("Veuillez entrer le rayon de la planete tellurique decouverte (en km): ");
         rayon = getRayon();
-        LecEcrFichier.getListePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, getVie(), getEau(), getGravite(), getAtmosphere(), getTempMax(), getTempMoy(), getTempMin(), getSatellites)(), getCompatibilite()));
+        LecEcrFichier.getListePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, getVie(), getEau(), getGravite(), getAtmosphere(), getTempMax(), getTempMoy(), getTempMin(), getSatellites(), getCompatibilite());
 
     }
 
     private void entrerDonneesPlanetesGazeuses() {
-        System.out.print("Veuillez entrer le nom de la planeteGazeuse decouverte: ");
-        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
-        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
-        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
-        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
+        String nom;
+        double rayon;
+        System.out.print("Veuillez entrer le nom de la planete gazeuse decouverte: ");
+        nom = getNom();
+        System.out.print("Veuillez entrer le rayon de la planete gazeuse decouverte (en km): ");
+        rayon = getRayon();
+        System.out.print("Veuillez entrer le rayon de la planete gazeuse decouverte (en km): ");
+        System.out.print("Veuillez entrer le rayon de la planete gazeuse decouverte (en km): ");
+        System.out.print("Veuillez entrer le rayon de la planete gazeuse decouverte (en km): ");
     }
 
     private void entrerDonneesPlanetesNaines() {
-        System.out.print("Veuillez entrer le nom de la planeteNaine decouverte: ");
-        System.out.print("Veuillez entrer le rayon de la planeteNaine decouverte (en km): ");
+        String nom, type;
+        Double rayon;
+        System.out.print("Veuillez entrer le nom de la planete naine decouverte: ");
+        nom = getNom();
+        System.out.print("Veuillez entrer le rayon de la planete Naine decouverte (en km): ");
+        rayon = getRayon();
+        System.out.print("Veuillez entrer le type de la planète Naine decouverte (ASTEROIDE, EPARS, CUBEWANO ou AUTRE)");
+        type = getType();
+        liste.add(new PlaneteNaine(getID(), nom, rayon, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
+        System.out.println("LA PLANETE NAINE A ETE CREEE");
     }
 
     private void entrerDonneesEtoiles() {
+        String nom;
+        Double rayon, masse;
         System.out.print("Veuillez entrer le nom de l etoile decouverte: ");
+        nom = getNom();
         System.out.print("Veuillez entrer le rayon de l etoile decouverte (en km): ");
+        rayon = getRayon();
+        System.out.print("Veuillez entrer la masse de l etoile decouverte (en kg): ");
+        getMasse();////faire try catch
+        System.out.print("Veuillez entrer le nombre de planetes liees a cette etoile (max : 10): ");
+        getTabPlanetesLiees();
     }
 
     private void entrerDonneesSatellites() {
@@ -206,9 +271,9 @@ public class ConfigGuide {
         rayon = getRayon();
         System.out.print("Veuillez entrer la planète liée au satellite decouvert: ");
         planeteLiee = getPlaneteLiee();
-        liste.add(new Satellites(getID(), nom, rayon, planeteLiee));
-        System.out.println(liste.toString());
-        
+        liste.add(new Satellites(getID(), nom, rayon, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
+//        System.out.println(liste.toString());
+
     }
 
 }

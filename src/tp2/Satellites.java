@@ -2,19 +2,19 @@ package tp2;
 
 public class Satellites extends CorpsCeleste {
 
-    private String planeteLies;
+    private String planeteLiee;
 
     public Satellites(int ID, String nom, double Rayon, String planetesLiees) {
         super(ID, nom, Rayon);
-        this.planeteLies = planeteLies;
+        this.planeteLiee = planeteLiee;
     }
 
     public String getPlaneteLiee() {
-        return planeteLies;
+        return planeteLiee;
     }
 
     public void setPlaneteLiee(String planeteLiee) {
-        this.planeteLies = planeteLiee;
+        this.planeteLiee = planeteLiee;
     }
     @Override
     public String toString(){
