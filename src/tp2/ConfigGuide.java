@@ -4,10 +4,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConfigGuide {
-
+    
+    enum Type{
+        ASTEROIDE,
+        EPARS,
+        CUBEWANO,
+        AUTRE
+        
+    }
     Scanner entree = new Scanner(System.in);
+    
+    int ID = 0;
 
-    private final CorpsCeleste corpsCeleste = new CorpsCeleste();
 
     boolean boucle = true;
 
@@ -52,7 +60,6 @@ public class ConfigGuide {
 
                         break;
                     case 2:
-                        assignerID();
                         afficherTypeDAstre();
                         entrerTypeDAstre();
                         break;
@@ -75,8 +82,9 @@ public class ConfigGuide {
         boucle = true;
     }
 
-    private void assignerID() {
-        corpsCeleste.setID(corpsCeleste.getID() + 1);
+    private int getID() {
+        ID ++;
+        return (1 + ID);
     }
 
     private void afficherTypeDAstre() {
@@ -126,14 +134,14 @@ public class ConfigGuide {
         boucle = true;
     }
 
-    private String entrerNomCC() {
+    private String getNom() {
         String nom;
         nom = entree.nextLine();
         System.out.println("");
         return nom;
     }
 
-    private double entrerRayonCC() {
+    private double getRayon() {
         Double rayon = 0.0;
         while (boucle) {
             try {
@@ -154,60 +162,53 @@ public class ConfigGuide {
         return rayon;
     }
     
-    private String entrerPlaneteLiee(){
+    private String getPlaneteLiee(){
         String planeteLiee;
         planeteLiee = entree.nextLine();
         System.out.println("");
         return planeteLiee;
     }
     private void entrerDonneesPlanetesTelluriques() {
-        CorpsCeleste planeteTellurique = new PlaneteTellurique();
-        liste.add(planeteTellurique);
+        String nom;
+        double rayon;
         System.out.print("Veuillez entrer le nom de la planeteTellurique decouverte: ");
-        planeteTellurique.setNom(entrerNomCC());
+        nom = getNom();
         System.out.print("Veuillez entrer le rayon de la planeteTellurique decouverte (en km): ");
-        planeteTellurique.setRayon(entrerRayonCC());
+        rayon = getRayon();
+        LecEcrFichier.getListePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, getVie(), getEau(), getGravite(), getAtmosphere(), getTempMax(), getTempMoy(), getTempMin(), getSatellites)(), getCompatibilite()));
 
     }
 
     private void entrerDonneesPlanetesGazeuses() {
-        CorpsCeleste planeteGazeuse = new PlaneteGazeuse();
-        liste.add(planeteGazeuse);
         System.out.print("Veuillez entrer le nom de la planeteGazeuse decouverte: ");
-        planeteGazeuse.setNom(entrerNomCC());
         System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
-        planeteGazeuse.setRayon(entrerRayonCC());
+        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
+        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
+        System.out.print("Veuillez entrer le rayon de la planeteGazeuse decouverte (en km): ");
     }
 
     private void entrerDonneesPlanetesNaines() {
-        CorpsCeleste planeteNaine1 = new PlaneteNaine();
-        PlaneteNaine planeteNaine2 = new PlaneteNaine();
-        liste.add(planeteNaine1);
         System.out.print("Veuillez entrer le nom de la planeteNaine decouverte: ");
-        planeteNaine1.setNom(entrerNomCC());
         System.out.print("Veuillez entrer le rayon de la planeteNaine decouverte (en km): ");
-        planeteNaine1.setRayon(entrerRayonCC());
     }
 
     private void entrerDonneesEtoiles() {
-        CorpsCeleste etoile = new Etoile();
-        liste.add(etoile);
         System.out.print("Veuillez entrer le nom de l etoile decouverte: ");
-        etoile.setNom(entrerNomCC());
         System.out.print("Veuillez entrer le rayon de l etoile decouverte (en km): ");
-        etoile.setRayon(entrerRayonCC());
     }
 
     private void entrerDonneesSatellites() {
-        CorpsCeleste satellite1 = new Satellites();
-        Satellites satellite2 = new Satellites();
-        liste.add(satellite1);
+        String nom, planeteLiee;
+        Double rayon;
         System.out.print("Veuillez entrer le nom du satellite decouvert: ");
-        satellite1.setNom(entrerNomCC());
+        nom = getNom();
         System.out.print("Veuillez entrer le rayon du satellite decouvert (en km): ");
-        satellite1.setRayon(entrerRayonCC());
+        rayon = getRayon();
         System.out.print("Veuillez entrer la planète liée au satellite decouvert: ");
-        satellite2.setPlaneteLiee(entrerPlaneteLiee());
+        planeteLiee = getPlaneteLiee();
+        liste.add(new Satellites(getID(), nom, rayon, planeteLiee));
+        System.out.println(liste.toString());
+        
     }
 
 }
