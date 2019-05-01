@@ -1,31 +1,68 @@
 package tp2;
 
-import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class LecEcrFichier {
 
+    //Variables Globales
     public static ArrayList<CorpsCeleste> listePlanetes = new ArrayList();
 
-    public static ArrayList initTableau(ArrayList listePlanetes) throws FileNotFoundException, IOException {
+    // Fonctions lecture/ecriture
+    protected static void ecrireFicher(ArrayList listePlanetes) {
+        try {
+            DataOutputStream ecrire = new DataOutputStream(new FileOutputStream("guide.bin"));
 
-        BufferedReader lecture = new BufferedReader(new FileReader("420-202-RE - H19 - Annexe - Planètes et lunes.xlsx"));
+        } catch (FileNotFoundException ex) {
+            System.out.println("Fichier inexistant.");
+        }
 
-        String ligne = null;
-        for (int i = 0; (ligne = lecture.readLine()) != null; i++) {
-            for (int j = 0; lecture.readLine() != null; j++) {
-                System.out.println(ligne);
+    }
+
+    protected void lectureFicher(ArrayList listePlanetes) {
+
+        try {
+            DataInputStream lire;
+            lire = new DataInputStream(new FileInputStream("guide.bin"));
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("Fichier inexistant.");
+        }
+    }
+
+    //Fonctions de tri
+    private ArrayList triInsertion(ArrayList<CorpsCeleste> listePlanetes) {
+
+        ArrayList listePlanetesCroissant = new ArrayList();
+        for (int i = 1; i < listePlanetes.size(); i++) {
+            int valeur = (int) Character.toUpperCase(listePlanetes.get(i).getNom().charAt(0));
+            int valeur2 = (int) Character.toUpperCase(listePlanetes.get(i - 1).getNom().charAt(0));
+            int position = i;
+
+            while (position > 0 && valeur2 > valeur) {
+                listePlanetes.add(position, listePlanetes.get(position - 1));
+                position--;
             }
+
+            listePlanetes.add(position, listePlanetes.get(i)); // On place l'élément à la position 
+            // correcte dans la partie triée.
         }
         for (int i = 0; i < listePlanetes.size(); i++) {
-
+            listePlanetesCroissant.add(listePlanetes.get(i));
         }
+        return listePlanetesCroissant;
 
-        lecture.close();
-
-        return listePlanetes;
     }
+    
+    //Affichage de la liste Croissante/Decroissante
+    private void afficherEncyclopedie(ArrayList listePlanetesCroissant){
+        for (int i = 0; i < listePlanetesCroissant.size(); i++) {
+            System.out.println(listePlanetesCroissant.get(i).toString());
+        }
+    }
+
 }
