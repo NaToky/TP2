@@ -1,6 +1,8 @@
 package tp2;
 
-public class CorpsCeleste {
+import java.io.Serializable;
+
+public class CorpsCeleste implements Serializable {
     
     private int ID = 0;
     private String nom;

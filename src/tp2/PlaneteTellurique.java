@@ -1,6 +1,8 @@
 package tp2;
 
-public class PlaneteTellurique extends CorpsCeleste{
+import java.io.Serializable;
+
+public class PlaneteTellurique extends CorpsCeleste implements Serializable{
     private boolean vie;
     private boolean eau;
     private double gravite;

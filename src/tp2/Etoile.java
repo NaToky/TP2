@@ -1,6 +1,8 @@
 package tp2;
 
-public class Etoile extends CorpsCeleste {
+import java.io.Serializable;
+
+public class Etoile extends CorpsCeleste implements Serializable{
     
     private int stade;
     private double masse;

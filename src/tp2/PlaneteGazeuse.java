@@ -1,6 +1,8 @@
 package tp2;
 
-public class PlaneteGazeuse extends CorpsCeleste {
+import java.io.Serializable;
+
+public class PlaneteGazeuse extends CorpsCeleste implements Serializable {
     
     private boolean atmosphere;
     private boolean vie;

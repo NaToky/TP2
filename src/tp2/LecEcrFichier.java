@@ -16,7 +16,7 @@ public class LecEcrFichier {
     protected static void ecrireFicher(ArrayList listePlanetes) {
         try {
             DataOutputStream ecrire = new DataOutputStream(new FileOutputStream("guide.bin"));
-
+                
         } catch (FileNotFoundException ex) {
             System.out.println("Fichier inexistant.");
         }
@@ -45,11 +45,11 @@ public class LecEcrFichier {
 
             while (position > 0 && valeur2 > valeur) {
                 listePlanetes.add(position, listePlanetes.get(position - 1));
+                listePlanetes.remove(position+1);
                 position--;
             }
 
-            listePlanetes.add(position, listePlanetes.get(i)); // On place l'élément à la position 
-            // correcte dans la partie triée.
+            listePlanetes.add(position, listePlanetes.get(i)); 
         }
         for (int i = 0; i < listePlanetes.size(); i++) {
             listePlanetesCroissant.add(listePlanetes.get(i));
@@ -59,6 +59,7 @@ public class LecEcrFichier {
     }
     
     //Affichage de la liste Croissante/Decroissante
+    
     private void afficherEncyclopedie(ArrayList listePlanetesCroissant){
         for (int i = 0; i < listePlanetesCroissant.size(); i++) {
             System.out.println(listePlanetesCroissant.get(i).toString());

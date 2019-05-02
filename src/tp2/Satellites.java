@@ -1,6 +1,8 @@
 package tp2;
 
-public class Satellites extends CorpsCeleste {
+import java.io.Serializable;
+
+public class Satellites extends CorpsCeleste implements Serializable {
 
     private String planeteLiee;
 
