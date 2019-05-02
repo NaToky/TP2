@@ -8,8 +8,8 @@ public class PlaneteGazeuse extends CorpsCeleste implements Serializable {
     private boolean vie;
     private boolean anneaux;
     
-    public PlaneteGazeuse(int ID,String nom,double Rayon, boolean atmosphere, boolean vie, boolean anneaux){
-        super(ID,nom,Rayon);
+    public PlaneteGazeuse(int ID,String nom,double rayon, boolean atmosphere, boolean vie, boolean anneaux){
+        super(ID,nom,rayon);
         this.anneaux = anneaux;
         this.atmosphere = atmosphere;
         this.vie = vie;

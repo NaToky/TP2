@@ -5,17 +5,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConfigGuide {
-    
+
     Scanner entree = new Scanner(System.in);
-    
+
     int ID = 0;
-    
+
     ArrayList<CorpsCeleste> liste = new ArrayList<>();
-    
+
+    private boolean atmosphere = false, eau = false;
+    private double rayon = 0.00, gravite = 0.00, tempMax = 0.00, tempMin = 0.00, tempMoy = 0.00, pourcentageRayon = 0.00, pourcentageAtmosphere = 0.00, pourcentageGravite = 0.00, pourcentageEau = 0.00, pourcentageTempMin = 0.00, pourcentageTempMax = 0.00, pourcentageTempMoy = 0.00;
+
     protected void main() {
         recommencerProgramme();
     }
-    
+
     private void recommencerProgramme() {
         boolean recommencer;
         System.out.println("BIENVENUE DANS LE GUIDE DU ROUTARD GALACTIQUE \n");
@@ -24,7 +27,7 @@ public class ConfigGuide {
             entrerMenu();
         }
     }
-    
+
     private void afficherMenu() {
         System.out.println("Que voulez vous faire? \n");
         System.out.println("    1-  Consulter l encyclopedie");
@@ -33,7 +36,7 @@ public class ConfigGuide {
         System.out.println("    4-  Statistiques");
         System.out.println("    5-  Quitter");
     }
-    
+
     private void entrerMenu() {
         int menu;
         boolean boucle = true;
@@ -49,20 +52,20 @@ public class ConfigGuide {
                 }
                 switch (menu) {
                     case 1:
-                        
+
                         break;
                     case 2:
                         afficherTypeDAstre();
                         entrerTypeDAstre();
                         break;
                     case 3:
-                        
+
                         break;
                     case 4:
-                        
+
                         break;
                     case 5:
-                        
+
                         break;
                 }
                 boucle = false;
@@ -71,14 +74,13 @@ public class ConfigGuide {
                 System.out.print("Veuillez entrer un nombre entre 1 et 5: ");
             }
         }
-        boucle = true;
     }
-    
+
     private int getID() {
         ID++;
         return (ID);
     }
-    
+
     private void afficherTypeDAstre() {
         System.out.println("Veuillez entrer le type d astre que vous voulez creer:");
         System.out.println("    1-  Planete tellurique");
@@ -87,7 +89,7 @@ public class ConfigGuide {
         System.out.println("    4-  Etoile");
         System.out.println("    5-  Satellite");
     }
-    
+
     private void entrerTypeDAstre() {
         int menu;
         boolean boucle = true;
@@ -125,42 +127,105 @@ public class ConfigGuide {
             }
         }
     }
-    
+
     private String getNom() {
         String nom;
         nom = entree.nextLine();
         System.out.println("");
         return nom;
     }
-    
+
     private double getRayon() {
         boolean boucle = true;
-        Double rayon = 0.0;
         while (boucle) {
             try {
                 rayon = Double.parseDouble(entree.nextLine());
                 while (rayon <= 0) {
                     System.out.println("");
-                    System.out.print("Veuillez entrer un nombre entier positif: ");
+                    System.out.print("Veuillez entrer un nombre reel positif: ");
                     rayon = Double.parseDouble(entree.nextLine());
                 }
                 boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
-                System.out.print("Veuillez entrer un nombre entier positif: ");
+                System.out.print("Veuillez entrer un nombre reel positif: ");
             }
         }
         System.out.println("");
         return rayon;
     }
-    
+
+    private double getCompatibilite() {
+        double compatibilite = 100;
+        compatibilite = compatibilite - soustraireRayon() - soustraireAtmosphere() - soustraireGravite() - soustraireEau() - soustraireTempMin() - soustraireTempMax() - soustraireTempMoy();
+        return compatibilite;
+    }
+
+    private double soustraireRayon() {
+        double rapport;
+        final double rayonTerre = 6371;
+        rapport = rayon / rayonTerre;
+        pourcentageRayon = Math.abs((1 - rapport) * 10);
+        return pourcentageRayon;
+    }
+
+    private double soustraireAtmosphere() {
+        if (atmosphere = true) {
+            pourcentageAtmosphere = 0;
+        } else if (atmosphere = false) {
+            pourcentageAtmosphere = 10;
+        }
+        return pourcentageAtmosphere;
+    }
+
+    private double soustraireGravite() {
+        double rapport;
+        final double csteGravTerre = 9.81;
+        rapport = gravite / csteGravTerre;
+        pourcentageGravite = Math.abs((1 - rapport) * 5);
+        return pourcentageGravite;
+    }
+
+    private double soustraireEau() {
+        if (eau = true) {
+            pourcentageEau = 0;
+        } else if (eau = false) {
+            pourcentageEau = 10;
+        }
+        return pourcentageEau;
+    }
+
+    private double soustraireTempMin() {
+        double rapport, tempMinK = tempMin + 273.15;
+        final double tempMinTerreK = 179.95;
+        rapport = Math.abs(tempMinK - tempMinTerreK);
+        pourcentageTempMin = rapport/10;
+        return pourcentageTempMin;
+    }
+
+    private double soustraireTempMax() {
+        double rapport, tempMaxK = tempMax + 273.15;
+        final double tempMaxTerreK = 329.85;
+        rapport = Math.abs(tempMaxK - tempMaxTerreK);
+        pourcentageTempMax = rapport/10;
+        return pourcentageTempMax;
+    }
+
+    private double soustraireTempMoy() {
+        double rapport, tempMoyK = tempMoy + 273.15;
+        final double tempMoyTerreK = 287.99;
+        rapport = Math.abs(tempMoyK - tempMoyTerreK);
+        pourcentageTempMoy = rapport/10;
+        return pourcentageTempMoy;
+    }
+
     private String getPlaneteLiee() {
         String planeteLiee;
         planeteLiee = entree.nextLine();
         System.out.println("");
         return planeteLiee;
     }
-    
+
     private String[] getTabPlanetesLiees() {
         int nbrPlanetes = 0;
         boolean boucle = true;
@@ -170,14 +235,14 @@ public class ConfigGuide {
                 nbrPlanetes = Integer.parseInt(entree.nextLine());
                 System.out.println("");
                 while (nbrPlanetes < 0 || nbrPlanetes > 10) {
-                    System.out.print("Veuillez entrer un nombre de planetes liees valide (entre 1 et 10): ");
+                    System.out.print("Veuillez entrer un nombre de planetes liees valide (entre 0 et 10): ");
                     nbrPlanetes = Integer.parseInt(entree.nextLine());
                     System.out.println("");
                 }
                 boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
-                System.out.print("Veuillez entrer un nombre de planetes liees valide (entre 1 et 10): ");
+                System.out.print("Veuillez entrer un nombre de planetes liees valide (entre 0 et 10): ");
             }
         }
         String[] tabPlanetes = new String[nbrPlanetes];
@@ -185,12 +250,42 @@ public class ConfigGuide {
             System.out.print("Veuillez entrer le nom de la planete " + (i + 1) + ": ");
             nomPlanetesLiees = entree.nextLine();
             tabPlanetes[i] = nomPlanetesLiees;
-            
+
         }
         System.out.println("");
         return tabPlanetes;
     }
-    
+
+    private String[] getSatellites() {
+        int nbrSatellites = 0;
+        boolean boucle = true;
+        String nomSatellites;
+        while (boucle) {
+            try {
+                nbrSatellites = Integer.parseInt(entree.nextLine());
+                System.out.println("");
+                while (nbrSatellites < 0 || nbrSatellites > 10) {
+                    System.out.print("Veuillez entrer un nombre de satellites valide (entre 0 et 10): ");
+                    nbrSatellites = Integer.parseInt(entree.nextLine());
+                    System.out.println("");
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre de satellites valide (entre 0 et 10): ");
+            }
+        }
+        String[] tabSatellites = new String[nbrSatellites];
+        for (int i = 0; i < nbrSatellites; i++) {
+            System.out.print("Veuillez entrer le nom du satellite " + (i + 1) + ": ");
+            nomSatellites = entree.nextLine();
+            tabSatellites[i] = nomSatellites;
+
+        }
+        System.out.println("");
+        return tabSatellites;
+    }
+
     private String getType() {
         String type, typeMaj;
         type = entree.nextLine();
@@ -204,28 +299,108 @@ public class ConfigGuide {
         }
         return type;
     }
-    
+
     private double getMasse() {
-        double masse = 0;
+        double masse = 0.00;
         boolean boucle = true;
         while (boucle) {
             try {
                 masse = Double.parseDouble(entree.nextLine());
                 System.out.println("");
                 while (masse <= 0) {
-                    System.out.println("Veuillez entrer un nombre entier positif: ");
+                    System.out.print("Veuillez entrer un nombre reel positif: ");
                     masse = Double.parseDouble(entree.nextLine());
                     System.out.println("");
                 }
                 boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
-                System.out.print("Veuillez entrer un nombre entier positif: ");
+                System.out.print("Veuillez entrer un nombre reel positif: ");
             }
         }
         return masse;
     }
-    
+
+    private double getGravite() {
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                gravite = Double.parseDouble(entree.nextLine());
+                System.out.println("");
+                while (gravite <= 0) {
+                    System.out.print("Veuillez entrer un nombre reel positif: ");
+                    gravite = Double.parseDouble(entree.nextLine());
+                    System.out.println("");
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel positif: ");
+            }
+        }
+        return gravite;
+    }
+
+    private double getTempMin() {
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                tempMin = Double.parseDouble(entree.nextLine());
+                System.out.println("");
+                while (tempMin <= -273.15) {
+                    System.out.print("Veuillez entrer un nombre reel plus grand que -273.15: ");
+                    tempMin = Double.parseDouble(entree.nextLine());
+                    System.out.println("");
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel plus grand que -273.15: ");
+            }
+        }
+        return tempMin;
+    }
+
+    private double getTempMax() {
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                tempMax = Double.parseDouble(entree.nextLine());
+                System.out.println("");
+                while (tempMax < tempMin) {
+                    System.out.print("Veuillez entrer un nombre reel plus grand que " + tempMin + " (valeur min): ");
+                    tempMax = Double.parseDouble(entree.nextLine());
+                    System.out.println("");
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel plus grand que " + tempMin + ": ");
+            }
+        }
+        return tempMax;
+    }
+
+    private double getTempMoy() {
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                tempMoy = Double.parseDouble(entree.nextLine());
+                System.out.println("");
+                while (tempMoy < tempMin || tempMoy > tempMax) {
+                    System.out.print("Veuillez entrer un nombre reel inclu entre " + tempMin + " (valeur min) et " + tempMax + " (valeur max): ");
+                    tempMoy = Double.parseDouble(entree.nextLine());
+                    System.out.println("");
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel inclu entre " + tempMin + " et " + tempMax + ": ");
+            }
+        }
+        return tempMoy;
+    }
+
     private int getPhase() {
         int phase = 0;
         boolean boucle = true;
@@ -245,11 +420,10 @@ public class ConfigGuide {
             }
         }
         return phase;
-        
+
     }
-    
+
     private boolean getAtmosphere() {
-        boolean atmosphere = false;
         String choix;
         char decision;
         choix = entree.nextLine();
@@ -270,7 +444,7 @@ public class ConfigGuide {
         }
         return atmosphere;
     }
-    
+
     private boolean getVie() {
         boolean vie = false;
         String choix;
@@ -295,7 +469,7 @@ public class ConfigGuide {
     }
 
     private boolean getAnneaux() {
-        boolean anneau = false;
+        boolean anneaux = false;
         String choix;
         char decision;
         choix = entree.nextLine();
@@ -310,28 +484,69 @@ public class ConfigGuide {
             System.out.println("");
         }
         if (decision == 'O') {
-            anneau = true;
+            anneaux = true;
         } else if (decision == 'N') {
-            anneau = false;
+            anneaux = false;
         }
-        return anneau;
+        return anneaux;
+    }
+
+    private boolean getEau() {
+        String choix;
+        char decision;
+        choix = entree.nextLine();
+        choix = choix.toUpperCase();
+        decision = choix.charAt(0);
+        System.out.println("");
+        while (decision != 'O' && decision != 'N') {
+            System.out.print("Veuillez entrer une reponse valide (oui/non): ");
+            choix = entree.nextLine();
+            choix = choix.toUpperCase();
+            decision = choix.charAt(0);
+            System.out.println("");
+        }
+        if (decision == 'O') {
+            eau = true;
+        } else if (decision == 'N') {
+            eau = false;
+        }
+        return eau;
     }
 
     private void entrerDonneesPlanetesTelluriques() {
         String nom;
-        double rayon;
+        String[] satellites;
+        boolean vie;
+        double compatibilite;
         System.out.print("Veuillez entrer le nom de la planete tellurique decouverte: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon de la planete tellurique decouverte (en km): ");
         rayon = getRayon();
-        liste.add(new PlaneteTellurique(getID(), nom, rayon, getVie(), getEau(), getGravite(), getAtmosphere(), getTempMax(), getTempMoy(), getTempMin(), getSatellites(), getCompatibilite());
-        
+        System.out.print("L atmosphere de la planete tellurique decouverte est-elle compatible avec celle de la terre (oui/non)? ");
+        atmosphere = getAtmosphere();
+        System.out.print("Y a t-il presence de vie sur la planete tellurique decouverte (oui/non)? ");
+        vie = getVie();
+        System.out.print("Y a t-il presence d eau sur la planete tellurique decouverte (oui/non)? ");
+        eau = getEau();
+        System.out.print("Veuillez entrer la constante gravitationnelle de la planete tellurique decouverte: ");
+        gravite = getGravite();
+        System.out.print("Veuillez entrer la temperature minimum observable sur la planete tellurique decouverte: ");
+        tempMin = getTempMin();
+        System.out.print("Veuillez entrer la temperature maximum observable sur la planete tellurique decouverte: ");
+        tempMax = getTempMax();
+        System.out.print("Veuillez entrer la temperature moyenne observable sur la planete tellurique decouverte: ");
+        tempMoy = getTempMoy();
+        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete tellurique decouverte (max: 10): ");
+        satellites = getSatellites();
+        compatibilite = getCompatibilite();
+        System.out.println("Compatibilite pour les terriens: " + compatibilite + "% \n");
+
+        liste.add(new PlaneteTellurique(getID(), nom, rayon, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
     }
-    
+
     private void entrerDonneesPlanetesGazeuses() {
         String nom;
-        double rayon;
-        boolean atmosphere, vie, anneaux;
+        boolean vie, anneaux;
         System.out.print("Veuillez entrer le nom de la planete gazeuse decouverte: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon de la planete gazeuse decouverte (en km): ");
@@ -345,10 +560,9 @@ public class ConfigGuide {
         liste.add(new PlaneteGazeuse(getID(), nom, rayon, atmosphere, vie, anneaux));
         System.out.println("LA PLANETE GAZEUSE A ETE CREEE \n");
     }
-    
+
     private void entrerDonneesPlanetesNaines() {
         String nom, type;
-        Double rayon;
         System.out.print("Veuillez entrer le nom de la planete naine decouverte: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon de la planete Naine decouverte (en km): ");
@@ -358,12 +572,12 @@ public class ConfigGuide {
         liste.add(new PlaneteNaine(getID(), nom, rayon, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println("LA PLANETE NAINE A ETE CREEE \n");
     }
-    
+
     private void entrerDonneesEtoiles() {
         String nom;
         int phase;
         String[] planetesLiees;
-        Double rayon, masse;
+        double masse;
         System.out.print("Veuillez entrer le nom de l etoile decouverte: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon de l etoile decouverte (en km): ");
@@ -372,16 +586,15 @@ public class ConfigGuide {
         phase = getPhase();
         System.out.print("Veuillez entrer la masse de l etoile decouverte (en kg): ");
         masse = getMasse();
-        System.out.print("Veuillez entrer le nombre de planetes liees a cette etoile (max : 10): ");
+        System.out.print("Veuillez entrer le nombre de planetes liees a cette etoile decouverte (max : 10): ");
         planetesLiees = getTabPlanetesLiees();
         liste.add(new Etoile(getID(), nom, rayon, phase, masse, planetesLiees));
         System.out.println("L ETOILE A ETE CREEE \n");
-        
+
     }
-    
+
     private void entrerDonneesSatellites() {
         String nom, planeteLiee;
-        Double rayon;
         System.out.print("Veuillez entrer le nom du satellite decouvert: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon du satellite decouvert (en km): ");
@@ -390,7 +603,7 @@ public class ConfigGuide {
         planeteLiee = getPlaneteLiee();
         liste.add(new Satellites(getID(), nom, rayon, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
         System.out.println("LE SATELITE A ETE CREE \n");
-        
+
     }
-    
+
 }

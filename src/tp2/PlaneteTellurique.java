@@ -2,27 +2,28 @@ package tp2;
 
 import java.io.Serializable;
 
-public class PlaneteTellurique extends CorpsCeleste implements Serializable{
+public class PlaneteTellurique extends CorpsCeleste implements Serializable {
+
+    private boolean atmosphere;
     private boolean vie;
     private boolean eau;
     private double gravite;
-    private boolean atmosphere;
+    private double TempMin;
     private double TempMax;
     private double TempMoy;
-    private double TempMin;
     private String Satellites;
     private double Compatibilite;
-    
-    public PlaneteTellurique(int ID,String nom,double rayon,boolean vie,boolean eau,double gravite,boolean atmosphere,double TempMax,double TempMoy,double TempMin,String Satellites,double Compatibilite){
-        super(ID,nom,rayon);
+
+    public PlaneteTellurique(int ID, String nom, double rayon, boolean atmosphere, boolean vie, boolean eau, double gravite, double TempMin, double TempMax, double TempMoy, String[] Satellites, double Compatibilite) {
+        super(ID, nom, rayon);
+        this.atmosphere = atmosphere;
         this.vie = vie;
         this.eau = eau;
         this.gravite = gravite;
-        this.atmosphere = atmosphere;
+        this.TempMin = TempMin;
         this.TempMax = TempMax;
         this.TempMoy = TempMoy;
-        this.TempMin = TempMin;
-        this.Satellites = Satellites;
+//        this.Satellites = Satellites;
         this.Compatibilite = Compatibilite;
     }
 }
