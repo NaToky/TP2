@@ -1,16 +1,18 @@
 package tp2;
 
-public class CorpsCeleste {
+import java.io.Serializable;
+
+public class CorpsCeleste implements Serializable {
     
     private int ID = 0;
     private String nom;
-    private double Rayon;
-//    
-//    public CorpsCeleste(int ID,String nom,double Rayon){
-//        this.ID = ID;
-//        this.nom = nom;
-//        this.Rayon = Rayon;
-//    }
+    private double rayon;
+    
+    public CorpsCeleste(int ID,String nom,double Rayon){
+        this.ID = ID;
+        this.nom = nom;
+        this.rayon = Rayon;
+    }
 
     public int getID() {
         return ID;
@@ -21,7 +23,7 @@ public class CorpsCeleste {
     }
 
     public double getRayon() {
-        return Rayon;
+        return rayon;
     }
 
     public void setID(int ID) {
@@ -33,7 +35,7 @@ public class CorpsCeleste {
     }
 
     public void setRayon(double Rayon) {
-        this.Rayon = Rayon;
+        this.rayon = Rayon;
     }
 
     
