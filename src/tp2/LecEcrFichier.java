@@ -1,41 +1,48 @@
 package tp2;
 
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class LecEcrFichier {
-
 
     //Variables Globales
     public static ArrayList<CorpsCeleste> listePlanetes = new ArrayList();
 
     // Fonctions lecture/ecriture
-    protected static void ecrireFicher(ArrayList listePlanetes) {
+    protected static void ecrireFicher(ArrayList listePlanetes) throws IOException {
         try {
-            DataOutputStream ecrire = new DataOutputStream(new FileOutputStream("guide.bin"));
-                
-        } catch (FileNotFoundException ex) {
-            System.out.println("Fichier inexistant.");
+            FileOutputStream fos = new FileOutputStream("guide.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(listePlanetes);
+                oos.flush();
+                oos.close();
+
+        } catch (java.io.IOException e) {
+            System.out.println("Erreur d'entrées-sorties");
         }
 
     }
 
-    protected void lectureFicher(ArrayList listePlanetes) {
+    protected static void lectureFichier() throws ClassNotFoundException {
 
         try {
-            DataInputStream lire;
-            lire = new DataInputStream(new FileInputStream("guide.bin"));
+            FileInputStream fichier = new FileInputStream("guide.bin");
+            ObjectInputStream ois = new ObjectInputStream(fichier);
+            listePlanetes = (ArrayList) ois.readObject(); 
+            
+        } catch (java.io.IOException e) {
+            System.out.println("Erreur d'entrées-sorties");
 
-        } catch (FileNotFoundException ex) {
-            System.out.println("Fichier inexistant.");
         }
     }
-
-    //Fonctions de tri
+        
+        //Fonctions de tri
     private ArrayList triInsertion(ArrayList<CorpsCeleste> listePlanetes) {
 
         ArrayList listePlanetesCroissant = new ArrayList();
@@ -46,11 +53,11 @@ public class LecEcrFichier {
 
             while (position > 0 && valeur2 > valeur) {
                 listePlanetes.add(position, listePlanetes.get(position - 1));
-                listePlanetes.remove(position+1);
+                listePlanetes.remove(position + 1);
                 position--;
             }
 
-            listePlanetes.add(position, listePlanetes.get(i)); 
+            listePlanetes.add(position, listePlanetes.get(i));
         }
         for (int i = 0; i < listePlanetes.size(); i++) {
             listePlanetesCroissant.add(listePlanetes.get(i));
@@ -58,10 +65,9 @@ public class LecEcrFichier {
         return listePlanetesCroissant;
 
     }
-    
+
     //Affichage de la liste Croissante/Decroissante
-    
-    private void afficherEncyclopedie(ArrayList listePlanetesCroissant){
+    public static void afficherEncyclopedie(ArrayList listePlanetesCroissant) {
         for (int i = 0; i < listePlanetesCroissant.size(); i++) {
             System.out.println(listePlanetesCroissant.get(i).toString());
         }

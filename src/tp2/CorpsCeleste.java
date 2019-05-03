@@ -8,6 +8,11 @@ public class CorpsCeleste implements Serializable {
     private String nom;
     private double rayon;
     
+    public CorpsCeleste(){
+        ID = 0;
+        nom = "Aucun";
+        rayon = 0;
+    }
     public CorpsCeleste(int ID,String nom,double Rayon){
         this.ID = ID;
         this.nom = nom;

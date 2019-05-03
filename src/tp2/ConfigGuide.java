@@ -1,6 +1,7 @@
 package tp2;
 
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class ConfigGuide {
@@ -9,16 +10,15 @@ public class ConfigGuide {
 
     int ID = 0;
 
-
+    private boolean recommencer = true;
     private boolean atmosphere = false , eau = false;
     private double rayon = 0.00, gravite = 0.00, tempMax = 0.00, tempMin = 0.00, tempMoy = 0.00, pourcentageRayon = 0.00, pourcentageAtmosphere = 0.00, pourcentageGravite = 0.00, pourcentageEau = 0.00, pourcentageTempMin = 0.00, pourcentageTempMax = 0.00, pourcentageTempMoy = 0.00;
 
-    protected void main() {
+    protected void main() throws IOException {
         recommencerProgramme();
     }
 
-    private void recommencerProgramme() {
-        boolean recommencer;
+    private void recommencerProgramme() throws IOException {
         System.out.println("BIENVENUE DANS LE GUIDE DU ROUTARD GALACTIQUE \n");
         while (recommencer = true) {
             afficherMenu();
@@ -35,7 +35,7 @@ public class ConfigGuide {
         System.out.println("    5-  Quitter");
     }
 
-    private void entrerMenu() {
+    private void entrerMenu() throws IOException {
         int menu;
         boolean boucle = true;
         System.out.print("Votre choix: ");
@@ -50,7 +50,7 @@ public class ConfigGuide {
                 }
                 switch (menu) {
                     case 1:
-
+                        LecEcrFichier.afficherEncyclopedie(LecEcrFichier.listePlanetes);
                         break;
                     case 2:
                         afficherTypeDAstre();
@@ -63,7 +63,8 @@ public class ConfigGuide {
 
                         break;
                     case 5:
-
+                          LecEcrFichier.ecrireFicher(LecEcrFichier.listePlanetes);
+                          recommencer = false;
                         break;
                 }
                 boucle = false;
