@@ -10,11 +10,17 @@ public class Etoile extends CorpsCeleste implements Serializable {
 
         private double masse;
         private String[] planetesLiees;
+        
+        public Etoile(int ID, String Nom,double rayon){
+            super(ID,Nom,rayon);
+            ID = 0;
+            Nom = "Aucun";
+        }
 
         public Etoile(int ID, String nom, double rayon, int phase, double masse, String[] planetesLiees) {
             super(ID, nom, rayon);
             this.masse = masse;
-//        this.[]planetesLiees = planetesLiees[];
+//           this.planetesLiees = planetesLiees;
             this.phase = phase;
         }
     }

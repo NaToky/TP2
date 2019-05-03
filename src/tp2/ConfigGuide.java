@@ -1,6 +1,5 @@
 package tp2;
 
-import java.util.ArrayList;
 
 import java.util.Scanner;
 
@@ -10,9 +9,8 @@ public class ConfigGuide {
 
     int ID = 0;
 
-    ArrayList<CorpsCeleste> liste = new ArrayList<>();
 
-    private boolean atmosphere = false, eau = false;
+    private boolean atmosphere = false , eau = false;
     private double rayon = 0.00, gravite = 0.00, tempMax = 0.00, tempMin = 0.00, tempMoy = 0.00, pourcentageRayon = 0.00, pourcentageAtmosphere = 0.00, pourcentageGravite = 0.00, pourcentageEau = 0.00, pourcentageTempMin = 0.00, pourcentageTempMax = 0.00, pourcentageTempMoy = 0.00;
 
     protected void main() {
@@ -172,7 +170,7 @@ public class ConfigGuide {
     private double soustraireAtmosphere() {
         if (atmosphere = true) {
             pourcentageAtmosphere = 0;
-        } else if (atmosphere = false) {
+        } else if (!atmosphere) {
             pourcentageAtmosphere = 10;
         }
         return pourcentageAtmosphere;
@@ -189,7 +187,7 @@ public class ConfigGuide {
     private double soustraireEau() {
         if (eau = true) {
             pourcentageEau = 0;
-        } else if (eau = false) {
+        } else if (!eau) {
             pourcentageEau = 10;
         }
         return pourcentageEau;
@@ -541,7 +539,7 @@ public class ConfigGuide {
         compatibilite = getCompatibilite();
         System.out.println("Compatibilite pour les terriens: " + compatibilite + "% \n");
 
-        liste.add(new PlaneteTellurique(getID(), nom, rayon, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
+        LecEcrFichier.listePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
     }
 
     private void entrerDonneesPlanetesGazeuses() {
@@ -557,7 +555,7 @@ public class ConfigGuide {
         vie = getVie();
         System.out.print("Y a t-il presence d un anneau qui entoure la planete gazeuse decouverte (oui/non)? ");
         anneaux = getAnneaux();
-        liste.add(new PlaneteGazeuse(getID(), nom, rayon, atmosphere, vie, anneaux));
+        LecEcrFichier.listePlanetes.add(new PlaneteGazeuse(getID(), nom, rayon, atmosphere, vie, anneaux));
         System.out.println("LA PLANETE GAZEUSE A ETE CREEE \n");
     }
 
@@ -569,7 +567,7 @@ public class ConfigGuide {
         rayon = getRayon();
         System.out.print("Veuillez entrer le type de la planète Naine decouverte (ASTEROIDE, EPARS, CUBEWANO ou AUTRE): ");
         type = getType();
-        liste.add(new PlaneteNaine(getID(), nom, rayon, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
+        LecEcrFichier.listePlanetes.add(new PlaneteNaine(getID(), nom, rayon, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println("LA PLANETE NAINE A ETE CREEE \n");
     }
 
@@ -588,7 +586,7 @@ public class ConfigGuide {
         masse = getMasse();
         System.out.print("Veuillez entrer le nombre de planetes liees a cette etoile decouverte (max : 10): ");
         planetesLiees = getTabPlanetesLiees();
-        liste.add(new Etoile(getID(), nom, rayon, phase, masse, planetesLiees));
+        LecEcrFichier.listePlanetes.add(new Etoile(getID(), nom, rayon, phase, masse, planetesLiees));
         System.out.println("L ETOILE A ETE CREEE \n");
 
     }
@@ -601,7 +599,7 @@ public class ConfigGuide {
         rayon = getRayon();
         System.out.print("Veuillez entrer le nom de la planète liée au satellite decouvert: ");
         planeteLiee = getPlaneteLiee();
-        liste.add(new Satellites(getID(), nom, rayon, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
+        LecEcrFichier.listePlanetes.add(new Satellites(getID(), nom, rayon, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
         System.out.println("LE SATELITE A ETE CREE \n");
 
     }

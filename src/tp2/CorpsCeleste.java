@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CorpsCeleste implements Serializable {
     
-    private int ID = 0;
+    private int ID;
     private String nom;
     private double rayon;
     
