@@ -9,9 +9,10 @@ public class PlaneteNaine extends CorpsCeleste {
         CUBEWANO,
         AUTRE
     }
+//    
+//    public PlaneteNaine(int ID,String nom,double Rayon,enum Type){
+//    super(ID,nom,Rayon);
+//    this.Type = Type;
+//    }
     
-    public PlaneteNaine(int ID,String nom,double Rayon,enum Type){
-    super(ID,nom,Rayon);
-    this.Type = Type;
-    }
 }
