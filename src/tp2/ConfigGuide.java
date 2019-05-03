@@ -7,7 +7,7 @@ public class ConfigGuide {
 
     Scanner entree = new Scanner(System.in);
 
-    int ID = 0;
+    int iD = 0;
 
 
     private boolean atmosphere = false , eau = false;
@@ -75,8 +75,8 @@ public class ConfigGuide {
     }
 
     private int getID() {
-        ID++;
-        return (ID);
+        iD++;
+        return (iD);
     }
 
     private void afficherTypeDAstre() {
