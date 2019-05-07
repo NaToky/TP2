@@ -19,7 +19,7 @@ public class ConfigGuide {
 
     private void recommencerProgramme() throws IOException {
         System.out.println("BIENVENUE DANS LE GUIDE DU ROUTARD GALACTIQUE \n");
-        while (recommencer = true) {
+        while (recommencer) {
             afficherMenu();
             entrerMenu();
         }
@@ -27,7 +27,7 @@ public class ConfigGuide {
 
     private void afficherMenu() {
         System.out.println("Que voulez vous faire? \n");
-        System.out.println("    1-  Consulter l encyclopedie");
+        System.out.println("    1-  Consulter l encyclopedie"); 
         System.out.println("    2-  Saisir un nouveau corps celeste");
         System.out.println("    3-  Modifier un corps celeste");
         System.out.println("    4-  Statistiques");
