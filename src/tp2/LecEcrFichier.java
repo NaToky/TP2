@@ -1,8 +1,5 @@
 package tp2;
-<<<<<<< HEAD
 
-=======
->>>>>>> 5df0211fcfa746cf9110d0c425fc60b804d39a62
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -44,34 +41,36 @@ public class LecEcrFichier {
     }
         
         //Fonctions de tri
-    private ArrayList triInsertion(ArrayList<CorpsCeleste> listePlanetes) {
+    private static ArrayList triInsertion(ArrayList<CorpsCeleste> listePlanetes) {
 
         ArrayList listePlanetesCroissant = new ArrayList();
         for (int i = 1; i < listePlanetes.size(); i++) {
             int valeur = (int) Character.toUpperCase(listePlanetes.get(i).getNom().charAt(0));
             int valeur2 = (int) Character.toUpperCase(listePlanetes.get(i - 1).getNom().charAt(0));
+            System.out.println("Valeur 1: " + valeur);
+            System.out.println("Valeur 2: " +valeur2);
             int position = i;
 
-            while (position > 0 && valeur2 > valeur) {
-                listePlanetes.add(position, listePlanetes.get(position - 1));
-                listePlanetes.remove(position + 1);
+            while (position > 0 && valeur2 < valeur) {
+                listePlanetes.set(position, listePlanetes.get(position-1));
                 position--;
             }
-
-            listePlanetes.add(position, listePlanetes.get(i));
+            listePlanetes.set(position, listePlanetes.get(i));
         }
         for (int i = 0; i < listePlanetes.size(); i++) {
             listePlanetesCroissant.add(listePlanetes.get(i));
         }
         return listePlanetesCroissant;
-
     }
 
     //Affichage de la liste Croissante/Decroissante
     public static void afficherEncyclopedie(ArrayList listePlanetesCroissant) {
+        triInsertion(listePlanetesCroissant);
+        System.out.println("***********Guide du Routard Galactique*******");
         for (int i = 0; i < listePlanetesCroissant.size(); i++) {
             System.out.println(listePlanetesCroissant.get(i).toString());
         }
+        System.out.println("*********************************************");
     }
 
 }
