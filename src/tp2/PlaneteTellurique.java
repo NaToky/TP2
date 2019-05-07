@@ -14,8 +14,8 @@ public class PlaneteTellurique extends CorpsCeleste implements Serializable {
     private String Satellites;
     private double Compatibilite;
 
-    public PlaneteTellurique(int iD, String nom, double rayon, boolean atmosphere, boolean vie, boolean eau, double gravite, double TempMin, double TempMax, double TempMoy, String[] Satellites, double Compatibilite) {
-        super(iD, nom, rayon);
+    public PlaneteTellurique(int iD, String nom, double rayon, int nbrCC, boolean atmosphere, boolean vie, boolean eau, double gravite, double TempMin, double TempMax, double TempMoy, String[] Satellites, double Compatibilite) {
+        super(iD, nom, rayon, nbrCC);
         this.atmosphere = atmosphere;
         this.vie = vie;
         this.eau = eau;

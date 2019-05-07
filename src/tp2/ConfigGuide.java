@@ -1,17 +1,16 @@
 package tp2;
 
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ConfigGuide {
 
     Scanner entree = new Scanner(System.in);
-
-    int iD = 0;
-
-    private boolean recommencer = true;
-    private boolean atmosphere = false , eau = false;
+    private ArrayList<CorpsCeleste> listeEtoiles = new ArrayList();
+    private String[] planetesLiees;
+    private int iD = 0, nbrCC = 0, nbrLunes = 0;
+    private boolean atmosphere = false, eau = false, recommencer = true;
     private double rayon = 0.00, gravite = 0.00, tempMax = 0.00, tempMin = 0.00, tempMoy = 0.00, pourcentageRayon = 0.00, pourcentageAtmosphere = 0.00, pourcentageGravite = 0.00, pourcentageEau = 0.00, pourcentageTempMin = 0.00, pourcentageTempMax = 0.00, pourcentageTempMoy = 0.00;
 
     protected void main() throws IOException {
@@ -60,11 +59,12 @@ public class ConfigGuide {
 
                         break;
                     case 4:
-
+                        afficherStatistiques();
+                        entrerStatistiques();
                         break;
                     case 5:
-                          LecEcrFichier.ecrireFicher(LecEcrFichier.listePlanetes);
-                          recommencer = false;
+                        LecEcrFichier.ecrireFicher(LecEcrFichier.listePlanetes);
+                        recommencer = false;
                         break;
                 }
                 boucle = false;
@@ -80,6 +80,48 @@ public class ConfigGuide {
         return (iD);
     }
 
+    private void afficherStatistiques() {
+        System.out.println("Veuillez choisir l'une des 3 options suivantes:");
+        System.out.println("    1- Afficher le nombre de corps celeste crées. ");
+        System.out.println("    2- afficher le nombre de planètes associées a chaque etoile. ");
+        System.out.println("    3- afficher le nombre de lunes associées a chaque planète. ");
+        System.out.print("Choix: ");
+    }
+
+    private void entrerStatistiques() {
+        boolean boucle = true;
+        int menu;
+        while (boucle) {
+            try {
+                menu = Integer.parseInt(entree.nextLine());
+                System.out.println("");
+                while (menu < 1 || menu > 3) {
+                    System.out.print("Veuillez entrer un nombre entre 1 et 3: ");
+                    menu = Integer.parseInt(entree.nextLine());
+                    System.out.println("");
+                }
+                switch (menu) {
+                    case 1:
+                        System.out.println("Le nombre de corps celestes crees est de " + nbrCC);
+                        System.out.println("");
+                        break;
+                    case 2:
+                        System.out.println();
+                        break;
+                    case 3:
+                        System.out.println( nbrLunes);
+                        System.out.println("");
+                        break;
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre entre 1 et 3: ");
+            }
+        }
+
+    }
+
     private void afficherTypeDAstre() {
         System.out.println("Veuillez entrer le type d astre que vous voulez creer:");
         System.out.println("    1-  Planete tellurique");
@@ -92,6 +134,7 @@ public class ConfigGuide {
     private void entrerTypeDAstre() {
         int menu;
         boolean boucle = true;
+        nbrCC += 1;
         System.out.print("Votre choix: ");
         while (boucle) {
             try {
@@ -198,7 +241,7 @@ public class ConfigGuide {
         double rapport, tempMinK = tempMin + 273.15;
         final double tempMinTerreK = 179.95;
         rapport = Math.abs(tempMinK - tempMinTerreK);
-        pourcentageTempMin = rapport/10;
+        pourcentageTempMin = rapport / 10;
         return pourcentageTempMin;
     }
 
@@ -206,7 +249,7 @@ public class ConfigGuide {
         double rapport, tempMaxK = tempMax + 273.15;
         final double tempMaxTerreK = 329.85;
         rapport = Math.abs(tempMaxK - tempMaxTerreK);
-        pourcentageTempMax = rapport/10;
+        pourcentageTempMax = rapport / 10;
         return pourcentageTempMax;
     }
 
@@ -214,7 +257,7 @@ public class ConfigGuide {
         double rapport, tempMoyK = tempMoy + 273.15;
         final double tempMoyTerreK = 287.99;
         rapport = Math.abs(tempMoyK - tempMoyTerreK);
-        pourcentageTempMoy = rapport/10;
+        pourcentageTempMoy = rapport / 10;
         return pourcentageTempMoy;
     }
 
@@ -408,14 +451,14 @@ public class ConfigGuide {
                 phase = Integer.parseInt(entree.nextLine());
                 System.out.println("");
                 while (phase < 1 || phase > 14) {
-                    System.out.println("Veuillez entrer un nombre entier positif: ");
+                    System.out.print("Veuillez entrer un nombre entre 1 et 14: ");
                     phase = Integer.parseInt(entree.nextLine());
                     System.out.println("");
                 }
                 boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
-                System.out.print("Veuillez entrer un nombre entier positif: ");
+                System.out.print("Veuillez entrer un nombre entre 1 et 14: ");
             }
         }
         return phase;
@@ -540,7 +583,7 @@ public class ConfigGuide {
         compatibilite = getCompatibilite();
         System.out.println("Compatibilite pour les terriens: " + compatibilite + "% \n");
 
-        LecEcrFichier.listePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
+        LecEcrFichier.listePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, nbrCC, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
     }
 
     private void entrerDonneesPlanetesGazeuses() {
@@ -556,7 +599,7 @@ public class ConfigGuide {
         vie = getVie();
         System.out.print("Y a t-il presence d un anneau qui entoure la planete gazeuse decouverte (oui/non)? ");
         anneaux = getAnneaux();
-        LecEcrFichier.listePlanetes.add(new PlaneteGazeuse(getID(), nom, rayon, atmosphere, vie, anneaux));
+        LecEcrFichier.listePlanetes.add(new PlaneteGazeuse(getID(), nom, rayon, nbrCC, atmosphere, vie, anneaux));
         System.out.println("LA PLANETE GAZEUSE A ETE CREEE \n");
     }
 
@@ -568,39 +611,39 @@ public class ConfigGuide {
         rayon = getRayon();
         System.out.print("Veuillez entrer le type de la planète Naine decouverte (ASTEROIDE, EPARS, CUBEWANO ou AUTRE): ");
         type = getType();
-        LecEcrFichier.listePlanetes.add(new PlaneteNaine(getID(), nom, rayon, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
+        LecEcrFichier.listePlanetes.add(new PlaneteNaine(getID(), nom, rayon, nbrCC, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println("LA PLANETE NAINE A ETE CREEE \n");
     }
 
     private void entrerDonneesEtoiles() {
         String nom;
         int phase;
-        String[] planetesLiees;
         double masse;
         System.out.print("Veuillez entrer le nom de l etoile decouverte: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon de l etoile decouverte (en km): ");
         rayon = getRayon();
-        System.out.print("Veuillez entrer la phase a laquelle est rendue l etoile decouverte");
+        System.out.print("Veuillez entrer la phase a laquelle est rendue l etoile decouverte: ");
         phase = getPhase();
         System.out.print("Veuillez entrer la masse de l etoile decouverte (en kg): ");
         masse = getMasse();
         System.out.print("Veuillez entrer le nombre de planetes liees a cette etoile decouverte (max : 10): ");
         planetesLiees = getTabPlanetesLiees();
-        LecEcrFichier.listePlanetes.add(new Etoile(getID(), nom, rayon, phase, masse, planetesLiees));
+        LecEcrFichier.listePlanetes.add(new Etoile(getID(), nom, rayon, nbrCC, phase, masse, planetesLiees));
         System.out.println("L ETOILE A ETE CREEE \n");
 
     }
 
     private void entrerDonneesSatellites() {
         String nom, planeteLiee;
+        nbrLunes ++;
         System.out.print("Veuillez entrer le nom du satellite decouvert: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon du satellite decouvert (en km): ");
         rayon = getRayon();
         System.out.print("Veuillez entrer le nom de la planète liée au satellite decouvert: ");
         planeteLiee = getPlaneteLiee();
-        LecEcrFichier.listePlanetes.add(new Satellites(getID(), nom, rayon, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
+        LecEcrFichier.listePlanetes.add(new Satellites(getID(), nom, rayon, nbrCC, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
         System.out.println("LE SATELITE A ETE CREE \n");
 
     }

@@ -1,5 +1,8 @@
 package tp2;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5df0211fcfa746cf9110d0c425fc60b804d39a62
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;

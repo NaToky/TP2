@@ -6,8 +6,8 @@ public class Satellites extends CorpsCeleste implements Serializable {
 
     private String planeteLiee;
 
-    public Satellites(int ID, String nom, double rayon, String planetesLiees) {
-        super(ID, nom, rayon);
+    public Satellites(int ID, String nom, double rayon, int nbrCC, String planetesLiees) {
+        super(ID, nom, rayon, nbrCC);
         this.planeteLiee = planeteLiee;
     }
 
