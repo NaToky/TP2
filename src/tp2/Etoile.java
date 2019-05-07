@@ -22,4 +22,7 @@ public class Etoile extends CorpsCeleste implements Serializable {
 //           this.planetesLiees = planetesLiees;
             this.phase = phase;
         }
+        public String toString(){
+            return "Nom: " + this.getNom() + "ID: " + this.getID();
+        }
     }
