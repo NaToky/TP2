@@ -27,7 +27,7 @@ public class ConfigGuide {
 
     private void afficherMenu() {
         System.out.println("Que voulez vous faire? \n");
-        System.out.println("    1-  Consulter l encyclopedie"); 
+        System.out.println("    1-  Consulter l encyclopedie");
         System.out.println("    2-  Saisir un nouveau corps celeste");
         System.out.println("    3-  Modifier un corps celeste");
         System.out.println("    4-  Statistiques");
@@ -56,7 +56,7 @@ public class ConfigGuide {
                         entrerTypeDAstre();
                         break;
                     case 3:
-
+                        supprimerPlanetes(LecEcrFichier.listePlanetes);
                         break;
                     case 4:
                         afficherStatistiques();
@@ -109,7 +109,7 @@ public class ConfigGuide {
                         System.out.println();
                         break;
                     case 3:
-                        System.out.println( nbrLunes);
+                        System.out.println(nbrLunes);
                         System.out.println("");
                         break;
                 }
@@ -636,7 +636,7 @@ public class ConfigGuide {
 
     private void entrerDonneesSatellites() {
         String nom, planeteLiee;
-        nbrLunes ++;
+        nbrLunes++;
         System.out.print("Veuillez entrer le nom du satellite decouvert: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon du satellite decouvert (en km): ");
@@ -645,6 +645,27 @@ public class ConfigGuide {
         planeteLiee = getPlaneteLiee();
         LecEcrFichier.listePlanetes.add(new Satellites(getID(), nom, rayon, nbrCC, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
         System.out.println("LE SATELITE A ETE CREE \n");
+
+    }
+
+    private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes) {
+        System.out.println("Entrer le ID de la planete a supprimer: ");
+        int choixID;
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                choixID = Integer.parseInt(entree.nextLine());
+                for (int i = 0; i < listePlanetes.size(); i++) {
+                    if (listePlanetes.get(i).getID() == choixID) {
+                        listePlanetes.remove(i);
+                    }
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel (ID de la planete)");
+            }
+        }
 
     }
 
