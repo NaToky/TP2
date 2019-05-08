@@ -59,7 +59,7 @@ public class LecEcrFichier {
 
             int position = i;
 
-            while (position > 0 && valeur2 < valeur) {
+            while (position > 0 && valeur2 > valeur) {
                 listePlanetesCroissant.set(position, listePlanetesCroissant.get(position - 1));
                 position--;
             }
@@ -72,7 +72,7 @@ public class LecEcrFichier {
 
     //Affichage de la liste Croissante/Decroissante
     public static void afficherEncyclopedie(ArrayList listePlanetesCroissant) {
-        triInsertion(listePlanetesCroissant);
+        listePlanetesCroissant = triInsertion(listePlanetesCroissant);
         System.out.println("***********Guide du Routard Galactique*******");
         for (int i = 0; i < listePlanetesCroissant.size(); i++) {
             System.out.println(listePlanetesCroissant.get(i).toString());

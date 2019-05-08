@@ -2,6 +2,7 @@ package tp2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Etoile extends CorpsCeleste implements Serializable {
 
@@ -20,13 +21,16 @@ public class Etoile extends CorpsCeleste implements Serializable {
     public Etoile(int ID, String nom, double rayon, int nbrCC, int phase, double masse, String[] planetesLiees) {
         super(ID, nom, rayon, nbrCC);
         this.masse = masse;
-//           this.planetesLiees = planetesLiees;
-            this.phase = phase;
+        this.planetesLiees = planetesLiees;
+        this.phase = phase;
         }
     
         public String toString(){
-            return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" + " \nPhase: " + this.phase + "\n**************" ;
+            return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
+                    + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" +
+                    " \nPhase: " + this.phase + "\nPlanetes liee: " + Arrays.toString(this.planetesLiees) + "\n**************" ;
         }
+        
 
 
     }
