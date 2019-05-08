@@ -76,7 +76,17 @@ public class ConfigGuide {
     }
 
     private int getID() {
-        iD++;
+        if(LecEcrFichier.listePlanetes.isEmpty()){
+            iD = 0;
+        }else {
+            int iDmax = 0;
+            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
+                if(LecEcrFichier.listePlanetes.get(i).getID() >= iDmax){
+                    iDmax = LecEcrFichier.listePlanetes.get(i).getID() + 1; 
+                }
+            }
+            iD = iDmax;
+        }
         return (iD);
     }
 
@@ -655,9 +665,12 @@ public class ConfigGuide {
         while (boucle) {
             try {
                 choixID = Integer.parseInt(entree.nextLine());
-                for (int i = 0; i < listePlanetes.size(); i++) {
-                    if (listePlanetes.get(i).getID() == choixID) {
+                int i = 0;
+                while (i != listePlanetes.size()) {
+                    if(listePlanetes.get(i).getID() == choixID){
                         listePlanetes.remove(i);
+                    }else {
+                        i++;
                     }
                 }
                 boucle = false;
