@@ -49,14 +49,14 @@ public class ConfigGuide {
                 }
                 switch (menu) {
                     case 1:
-                        LecEcrFichier.afficherEncyclopedie(LecEcrFichier.listePlanetes);
+                        LecEcrFichier.afficherEncyclopedie();
                         break;
                     case 2:
                         afficherTypeDAstre();
                         entrerTypeDAstre();
                         break;
                     case 3:
-                        supprimerPlanetes(LecEcrFichier.listePlanetes);
+                        supprimerPlanetes(LecEcrFichier.listePlanetes,LecEcrFichier.listePlanetesCroissant,LecEcrFichier.listePlanetes);
                         break;
                     case 4:
                         afficherStatistiques();
@@ -658,9 +658,11 @@ public class ConfigGuide {
 
     }
 
-    private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes) {
+    private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes,ArrayList<CorpsCeleste> listePlanetesCroissant,ArrayList<CorpsCeleste> listePlanetesDecroissant) {
+        LecEcrFichier.afficherEncyclopedie();
         System.out.println("Entrer le ID de la planete a supprimer: ");
         int choixID;
+        int supp = 0;
         boolean boucle = true;
         while (boucle) {
             try {
@@ -668,11 +670,15 @@ public class ConfigGuide {
                 int i = 0;
                 while (i != listePlanetes.size()) {
                     if(listePlanetes.get(i).getID() == choixID){
-                        listePlanetes.remove(i);
+                        LecEcrFichier.listePlanetes.remove(i);
+                        supp++;
                     }else {
                         i++;
                     }
                 }
+                 if(supp == 0){
+                       System.out.println("Aucun object trouve avec l'ID de: " + choixID);
+                   }
                 boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
