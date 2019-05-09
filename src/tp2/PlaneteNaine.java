@@ -5,8 +5,9 @@ import java.io.Serializable;
 public class PlaneteNaine extends CorpsCeleste implements Serializable {
 
     private String type;
+    private String[] satellites;
 
-    public PlaneteNaine(int ID, String nom, double rayon, int nbrCC, String type) {
+    public PlaneteNaine(int ID, String nom, double rayon, int nbrCC, String type, String[] satellites) {
         super(ID, nom, rayon, nbrCC);
         this.type = type;
     }

@@ -27,4 +27,6 @@ public class Etoile extends CorpsCeleste implements Serializable {
     private boolean toString(ArrayList listePlanetes) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    
 }
