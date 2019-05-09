@@ -2,6 +2,7 @@ package tp2;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Etoile extends CorpsCeleste implements Serializable {
 
@@ -20,13 +21,24 @@ public class Etoile extends CorpsCeleste implements Serializable {
     public Etoile(int ID, String nom, double rayon, int nbrCC, int phase, double masse, String[] planetesLiees) {
         super(ID, nom, rayon, nbrCC);
         this.masse = masse;
-//           this.planetesLiees = planetesLiees;
+        this.planetesLiees = planetesLiees;
         this.phase = phase;
-    }
+        }
+    
+        public String toString(){
+            return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
+                    + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" +
+                    " \nPhase: " + this.phase + "\nPlanetes liee: " + Arrays.toString(this.planetesLiees) + "\n**************" ;
+        }
+        
 
-    private boolean toString(ArrayList listePlanetes) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
+<<<<<<< HEAD
     
     
 }
+=======
+
+
+>>>>>>> 73c9973c189e59b9609d9c3196d7848086f45d1c

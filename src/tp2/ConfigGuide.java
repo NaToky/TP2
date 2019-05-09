@@ -49,14 +49,14 @@ public class ConfigGuide {
                 }
                 switch (menu) {
                     case 1:
-                        LecEcrFichier.afficherEncyclopedie(LecEcrFichier.listePlanetes);
+                        LecEcrFichier.afficherEncyclopedie();
                         break;
                     case 2:
                         afficherTypeDAstre();
                         entrerTypeDAstre();
                         break;
                     case 3:
-
+                        supprimerPlanetes(LecEcrFichier.listePlanetes,LecEcrFichier.listePlanetesCroissant,LecEcrFichier.listePlanetes);
                         break;
                     case 4:
                         afficherStatistiques();
@@ -76,7 +76,17 @@ public class ConfigGuide {
     }
 
     private int getID() {
-        iD++;
+        if(LecEcrFichier.listePlanetes.isEmpty()){
+            iD = 0;
+        }else {
+            int iDmax = 0;
+            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
+                if(LecEcrFichier.listePlanetes.get(i).getID() >= iDmax){
+                    iDmax = LecEcrFichier.listePlanetes.get(i).getID() + 1; 
+                }
+            }
+            iD = iDmax;
+        }
         return (iD);
     }
 
@@ -654,6 +664,36 @@ public class ConfigGuide {
         planeteLiee = getPlaneteLiee();
         LecEcrFichier.listePlanetes.add(new Satellites(getID(), nom, rayon, nbrCC, planeteLiee));/////////////////////////////////////////////////////////////////////////////////////////////////////// ajouter liste de lececrfichier
         System.out.println("LE SATELITE A ETE CREE \n");
+
+    }
+
+    private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes,ArrayList<CorpsCeleste> listePlanetesCroissant,ArrayList<CorpsCeleste> listePlanetesDecroissant) {
+        LecEcrFichier.afficherEncyclopedie();
+        System.out.println("Entrer le ID de la planete a supprimer: ");
+        int choixID;
+        int supp = 0;
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                choixID = Integer.parseInt(entree.nextLine());
+                int i = 0;
+                while (i != listePlanetes.size()) {
+                    if(listePlanetes.get(i).getID() == choixID){
+                        LecEcrFichier.listePlanetes.remove(i);
+                        supp++;
+                    }else {
+                        i++;
+                    }
+                }
+                 if(supp == 0){
+                       System.out.println("Aucun object trouve avec l'ID de: " + choixID);
+                   }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel (ID de la planete)");
+            }
+        }
 
     }
 
