@@ -33,4 +33,7 @@ public class PlaneteTellurique extends CorpsCeleste implements Serializable {
                 + OuiNon(this.eau) + "Gravite: " + this.gravite + "Temperature Minimale: " + this.TempMin +"Temperature Maximale: " + this.TempMax +
                 "Temperature Moyenne: " + this.TempMoy + Arrays.toString(Satellites) + "Compatibilite: " + this.Compatibilite + "%" + "\n**************" ;
         }
+            public String getType(){
+            return "PlaneteTellurique";
+        }
 }

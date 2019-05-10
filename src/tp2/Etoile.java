@@ -29,6 +29,9 @@ public class Etoile extends CorpsCeleste implements Serializable {
                     + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" +
                     " \nPhase: " + this.phase + "\nPlanetes liee: " + Arrays.toString(this.planetesLiees) + "\n**************" ;
         }
+        public String getType(){
+            return "Etoile";
+        }
         
 
 

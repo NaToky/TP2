@@ -50,6 +50,10 @@ public class CorpsCeleste implements Serializable {
         }else
             return "non";
     }
+    public String getType(){
+        return null;
+    }
+    
     
     
 }

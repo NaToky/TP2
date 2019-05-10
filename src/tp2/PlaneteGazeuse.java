@@ -22,4 +22,7 @@ public class PlaneteGazeuse extends CorpsCeleste implements Serializable {
                     + this.getRayon() + " km" + " \nVie: " + OuiNon(this.vie) + "\nAnneaux: " + OuiNon(this.anneaux) + "\nSatellites: "
                     + Arrays.toString(this.satellites) + "\n**************" ;
         }
+                    public String getType(){
+            return "PlaneteGazeuse";
+        }
 }
