@@ -1,7 +1,6 @@
 package tp2;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Etoile extends CorpsCeleste implements Serializable {
@@ -25,6 +24,7 @@ public class Etoile extends CorpsCeleste implements Serializable {
         this.phase = phase;
         }
     
+        @Override
         public String toString(){
             return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
                     + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" +
@@ -34,11 +34,5 @@ public class Etoile extends CorpsCeleste implements Serializable {
 
 
     }
-<<<<<<< HEAD
     
-    
-}
-=======
 
-
->>>>>>> 73c9973c189e59b9609d9c3196d7848086f45d1c

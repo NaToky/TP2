@@ -613,7 +613,7 @@ public class ConfigGuide {
         vie = getVie();
         System.out.print("Y a t-il presence d un anneau qui entoure la planete gazeuse decouverte (oui/non)? ");
         anneaux = getAnneaux();
-        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete tellurique decouverte (max: 10): ");
+        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete gazeuses decouverte (max: 10): ");
         satellites = getSatellites();
         LecEcrFichier.listePlanetes.add(new PlaneteGazeuse(getID(), nom, rayon, nbrCC, atmosphere, vie, anneaux, satellites));
         System.out.println("LA PLANETE GAZEUSE A ETE CREEE \n");
