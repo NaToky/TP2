@@ -34,5 +34,11 @@ public class Etoile extends CorpsCeleste implements Serializable {
 
 
     }
+<<<<<<< HEAD
+    
+    
+}
+=======
 
 
+>>>>>>> 73c9973c189e59b9609d9c3196d7848086f45d1c

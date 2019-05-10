@@ -116,6 +116,7 @@ public class ConfigGuide {
                         System.out.println("");
                         break;
                     case 2:
+                        System.out.println(getNom());
                         System.out.println();
                         break;
                     case 3:
@@ -215,16 +216,16 @@ public class ConfigGuide {
 
     private double soustraireRayon() {
         double rapport;
-        final double rayonTerre = 6371;
+        final double rayonTerre = 6378.14;
         rapport = rayon / rayonTerre;
         pourcentageRayon = Math.abs((1 - rapport) * 10);
         return pourcentageRayon;
     }
 
     private double soustraireAtmosphere() {
-        if (atmosphere = true) {
+        if (atmosphere == true) {
             pourcentageAtmosphere = 0;
-        } else if (!atmosphere) {
+        } else if (atmosphere) {
             pourcentageAtmosphere = 10;
         }
         return pourcentageAtmosphere;
@@ -232,14 +233,14 @@ public class ConfigGuide {
 
     private double soustraireGravite() {
         double rapport;
-        final double csteGravTerre = 9.81;
-        rapport = gravite / csteGravTerre;
+        final double graviteTerre = 1.00;
+        rapport = gravite / graviteTerre;
         pourcentageGravite = Math.abs((1 - rapport) * 5);
         return pourcentageGravite;
     }
 
     private double soustraireEau() {
-        if (eau = true) {
+        if (eau == true) {
             pourcentageEau = 0;
         } else if (!eau) {
             pourcentageEau = 10;
@@ -265,7 +266,7 @@ public class ConfigGuide {
 
     private double soustraireTempMoy() {
         double rapport, tempMoyK = tempMoy + 273.15;
-        final double tempMoyTerreK = 287.99;
+        final double tempMoyTerreK = 288.15;
         rapport = Math.abs(tempMoyK - tempMoyTerreK);
         pourcentageTempMoy = rapport / 10;
         return pourcentageTempMoy;
@@ -491,7 +492,8 @@ public class ConfigGuide {
         }
         if (decision == 'O') {
             atmosphere = true;
-        } else if (decision == 'N') {
+        }
+        if (decision == 'N') {
             atmosphere = false;
         }
         return atmosphere;
@@ -580,7 +582,7 @@ public class ConfigGuide {
         vie = getVie();
         System.out.print("Y a t-il presence d eau sur la planete tellurique decouverte (oui/non)? ");
         eau = getEau();
-        System.out.print("Veuillez entrer la constante gravitationnelle de la planete tellurique decouverte: ");
+        System.out.print("Veuillez entrer le facteur de gravite sur la planete tellurique decouverte: ");
         gravite = getGravite();
         System.out.print("Veuillez entrer la temperature minimum observable sur la planete tellurique decouverte: ");
         tempMin = getTempMin();
@@ -588,16 +590,18 @@ public class ConfigGuide {
         tempMax = getTempMax();
         System.out.print("Veuillez entrer la temperature moyenne observable sur la planete tellurique decouverte: ");
         tempMoy = getTempMoy();
-        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete tellurique decouverte (max: 10): ");
+        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete gazeuse decouverte (max: 10): ");
         satellites = getSatellites();
         compatibilite = getCompatibilite();
-        System.out.println("Compatibilite pour les terriens: " + compatibilite + "% \n");
+        System.out.println("Compatibilite pour les terriens: " + String.format("%.2f", compatibilite) + "% \n");
 
         LecEcrFichier.listePlanetes.add(new PlaneteTellurique(getID(), nom, rayon, nbrCC, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
+        System.out.println("LA PLANETE TELLURIQUE A ETE CREEE \n");
     }
 
     private void entrerDonneesPlanetesGazeuses() {
         String nom;
+        String[] satellites;
         boolean vie, anneaux;
         System.out.print("Veuillez entrer le nom de la planete gazeuse decouverte: ");
         nom = getNom();
@@ -609,19 +613,24 @@ public class ConfigGuide {
         vie = getVie();
         System.out.print("Y a t-il presence d un anneau qui entoure la planete gazeuse decouverte (oui/non)? ");
         anneaux = getAnneaux();
-        LecEcrFichier.listePlanetes.add(new PlaneteGazeuse(getID(), nom, rayon, nbrCC, atmosphere, vie, anneaux));
+        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete tellurique decouverte (max: 10): ");
+        satellites = getSatellites();
+        LecEcrFichier.listePlanetes.add(new PlaneteGazeuse(getID(), nom, rayon, nbrCC, atmosphere, vie, anneaux, satellites));
         System.out.println("LA PLANETE GAZEUSE A ETE CREEE \n");
     }
 
     private void entrerDonneesPlanetesNaines() {
         String nom, type;
+        String[] satellites;
         System.out.print("Veuillez entrer le nom de la planete naine decouverte: ");
         nom = getNom();
         System.out.print("Veuillez entrer le rayon de la planete Naine decouverte (en km): ");
         rayon = getRayon();
         System.out.print("Veuillez entrer le type de la planète Naine decouverte (ASTEROIDE, EPARS, CUBEWANO ou AUTRE): ");
         type = getType();
-        LecEcrFichier.listePlanetes.add(new PlaneteNaine(getID(), nom, rayon, nbrCC, type));//////////////////////////////////////////////////////////////////////////////////////////////////////////
+        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete naine decouverte (max: 10): ");
+        satellites = getSatellites();
+        LecEcrFichier.listePlanetes.add(new PlaneteNaine(getID(), nom, rayon, nbrCC, type, satellites));//////////////////////////////////////////////////////////////////////////////////////////////////////////
         System.out.println("LA PLANETE NAINE A ETE CREEE \n");
     }
 
