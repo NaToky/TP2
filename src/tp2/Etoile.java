@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public class Etoile extends CorpsCeleste implements Serializable {
 
-    private int stade;
-
     private int phase;
 
     private double masse;
@@ -24,11 +22,13 @@ public class Etoile extends CorpsCeleste implements Serializable {
         this.phase = phase;
         }
     
+        @Override
         public String toString(){
             return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
                     + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" +
                     " \nPhase: " + this.phase + "\nPlanetes liee: " + Arrays.toString(this.planetesLiees) + "\n**************" ;
         }
+        @Override
         public String getType(){
             return "Etoile";
         }
@@ -52,11 +52,3 @@ public class Etoile extends CorpsCeleste implements Serializable {
 
 
     }
-
-    
-    
-
-
-
-
-
