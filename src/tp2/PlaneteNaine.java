@@ -28,4 +28,8 @@ public class PlaneteNaine extends CorpsCeleste implements Serializable {
             public String getType(){
             return "PlaneteNaine";
         }
+
+    public String[] getSatellites() {
+        return satellites;
+    }
 }

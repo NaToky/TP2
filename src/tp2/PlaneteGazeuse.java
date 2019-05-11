@@ -25,4 +25,20 @@ public class PlaneteGazeuse extends CorpsCeleste implements Serializable {
                     public String getType(){
             return "PlaneteGazeuse";
         }
+
+    public boolean isAtmosphere() {
+        return atmosphere;
+    }
+
+    public boolean isVie() {
+        return vie;
+    }
+
+    public boolean isAnneaux() {
+        return anneaux;
+    }
+
+    public String[] getSatellites() {
+        return satellites;
+    }
 }

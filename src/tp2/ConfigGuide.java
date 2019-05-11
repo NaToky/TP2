@@ -54,8 +54,10 @@ public class ConfigGuide {
                         entrerTypeDAstre();
                         break;
                     case 3:
-                        afficherParType(choixType());
+                        choixType();
                         supprimerPlanetes(LecEcrFichier.listePlanetes);
+                        choixType();
+                        modifierCorps();
                         break;
                     case 4:
                         afficherStatistiques();
@@ -186,6 +188,13 @@ public class ConfigGuide {
         System.out.println("");
         return nom;
     }
+        private String getNomMod() {
+        String nom;
+            System.out.println("Entrer le nouveau Nom: ");
+        nom = entree.nextLine();
+        System.out.println("");
+        return nom;
+    }
 
     private double getRayon() {
         boolean boucle = true;
@@ -206,6 +215,27 @@ public class ConfigGuide {
         System.out.println("");
         return rayon;
     }
+        private double getRayonMod() {
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                System.out.println("Entrer le nouveau Rayon: ");
+                rayon = Double.parseDouble(entree.nextLine());
+                while (rayon <= 0) {
+                    System.out.println("");
+                    System.out.print("Veuillez entrer un nombre reel positif: ");
+                    rayon = Double.parseDouble(entree.nextLine());
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel positif: ");
+            }
+        }
+        System.out.println("");
+        return rayon;
+    }
+    
 
     private double getCompatibilite() {
         double compatibilite = 100;
@@ -718,6 +748,7 @@ public class ConfigGuide {
             }
             
         }
+        afficherParType(choix);
         return choix;
     }
     
@@ -751,6 +782,64 @@ public class ConfigGuide {
                 if("Satellite".equals(LecEcrFichier.listePlanetes.get(i).getType())){
                 System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
                 }
+            }
+        }
+    }
+    private void modifierCorps(){
+        int choixID;
+        boolean boucle = true;
+        System.out.println("Entrer le ID de la planete a modifier: ");
+        while (boucle) {
+            try {
+                choixID = Integer.parseInt(entree.nextLine());
+                for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
+                    
+                if(LecEcrFichier.listePlanetes.get(i).getID() == choixID && LecEcrFichier.listePlanetes.get(i).getType().equals("Etoile")){
+                    int ID = LecEcrFichier.listePlanetes.get(choixID).getID();
+                    int nbrCC = LecEcrFichier.listePlanetes.get(choixID).getNbrCC();
+                    int phase = LecEcrFichier.listePlanetes.get(choixID).getPhase();
+                    double masse = LecEcrFichier.listePlanetes.get(choixID).getMasse();
+                    String[] planetesLiees = LecEcrFichier.listePlanetes.get(choixID).getPlanetesLiees();
+                    LecEcrFichier.listePlanetes.set(choixID, new Etoile(ID, getNomMod(), getRayonMod(), nbrCC, phase, masse, planetesLiees));
+                }else if(LecEcrFichier.listePlanetes.get(i).getID() == choixID && LecEcrFichier.listePlanetes.get(i).getType().equals("PlaneteGazeuse")){
+                    int ID = LecEcrFichier.listePlanetes.get(choixID).getID();
+                    int nbrCC = LecEcrFichier.listePlanetes.get(choixID).getNbrCC();
+                    boolean atmosphere = LecEcrFichier.listePlanetes.get(choixID).isAtmosphere();
+                    boolean vie = LecEcrFichier.listePlanetes.get(choixID).isVie();
+                    boolean anneaux = LecEcrFichier.listePlanetes.get(choixID).isAnneaux();
+                    String[] satellites = LecEcrFichier.listePlanetes.get(choixID).getSatellites();
+                   LecEcrFichier.listePlanetes.set(choixID,new PlaneteGazeuse(ID, getNomMod(), getRayonMod(), nbrCC, atmosphere, vie, anneaux, satellites));
+                }else if(LecEcrFichier.listePlanetes.get(i).getID() == choixID && LecEcrFichier.listePlanetes.get(i).getType().equals("PlaneteNaine")){
+                    int ID = LecEcrFichier.listePlanetes.get(choixID).getID();
+                    int nbrCC = LecEcrFichier.listePlanetes.get(choixID).getNbrCC();
+                    String[] satellites = LecEcrFichier.listePlanetes.get(choixID).getSatellites();
+                    String type = LecEcrFichier.listePlanetes.get(choixID).getType();
+                    LecEcrFichier.listePlanetes.set(choixID,new PlaneteNaine(ID, getNomMod(), getRayonMod(), nbrCC, type, satellites));
+                }else if(LecEcrFichier.listePlanetes.get(i).getID() == choixID && LecEcrFichier.listePlanetes.get(i).getType().equals("PlaneteTellurique")){
+                    int ID = LecEcrFichier.listePlanetes.get(choixID).getID();
+                    int nbrCC = LecEcrFichier.listePlanetes.get(choixID).getNbrCC();
+                    boolean atmosphere = LecEcrFichier.listePlanetes.get(choixID).isAtmosphere();
+                    boolean vie = LecEcrFichier.listePlanetes.get(choixID).isVie();
+                    String[] satellites = LecEcrFichier.listePlanetes.get(choixID).getSatellites();
+                    boolean eau = LecEcrFichier.listePlanetes.get(choixID).isEau();
+                    double gravite = LecEcrFichier.listePlanetes.get(choixID).getGravite();
+                    double tempMin = LecEcrFichier.listePlanetes.get(choixID).getTempMin();
+                    double tempMax = LecEcrFichier.listePlanetes.get(choixID).getTempMax();
+                    double tempMoy = LecEcrFichier.listePlanetes.get(choixID).getTempMoy();
+                    double compatibilite = LecEcrFichier.listePlanetes.get(choixID).getCompatibilite();
+                    LecEcrFichier.listePlanetes.set(choixID,new PlaneteTellurique(ID, getNomMod(), getRayonMod(), nbrCC, atmosphere, vie, eau, gravite, tempMin, tempMoy, tempMax, satellites, compatibilite));
+                }else if(LecEcrFichier.listePlanetes.get(i).getID() == choixID && LecEcrFichier.listePlanetes.get(i).getType().equals("Satellite")){
+                     int ID = LecEcrFichier.listePlanetes.get(choixID).getID();
+                    int nbrCC = LecEcrFichier.listePlanetes.get(choixID).getNbrCC();
+                    String planeteLiee = LecEcrFichier.listePlanetes.get(choixID).getPlaneteLiee();
+                    LecEcrFichier.listePlanetes.set(choixID,new Satellites(ID, getNomMod(), getRayonMod(), nbrCC, planeteLiee));
+                }else
+                        System.out.println("Pas de planetes avec le ID" + choixID);
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre reel (ID de la planete)");
             }
         }
     }

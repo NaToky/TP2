@@ -24,6 +24,10 @@ public class CorpsCeleste implements Serializable {
         return ID;
     }
 
+    public int getNbrCC() {
+        return nbrCC;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -53,7 +57,47 @@ public class CorpsCeleste implements Serializable {
     public String getType(){
         return null;
     }
-    
-    
-    
+    public int getPhase(){
+        return 0;
+    }
+    public double getMasse(){
+        return 0;
+    }
+    public String[] getPlanetesLiees(){
+        return null;
+    }
+    public boolean isAtmosphere(){
+        return false;
+    }
+    public boolean isVie(){
+        return false;
+    }
+    public boolean isAnneaux(){
+        return false;
+    }
+    public String[] getSatellites(){
+        return null;
+    }
+    public boolean isEau(){
+        return false;
+    }
+    public double getGravite(){
+        return 0;
+    }
+        public double getTempMin(){
+        return 0;
+    }
+            public double getTempMax(){
+        return 0;
+    }
+                public double getTempMoy(){
+        return 0;
+    }
+    public double getCompatibilite(){
+        return 0;
+    }
+    public String getPlaneteLiee(){
+        return null;
+    }
+                
 }
