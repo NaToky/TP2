@@ -5,8 +5,6 @@ import java.util.Arrays;
 
 public class Etoile extends CorpsCeleste implements Serializable {
 
-    private int stade;
-
     private int phase;
 
     private double masse;
@@ -34,5 +32,3 @@ public class Etoile extends CorpsCeleste implements Serializable {
 
 
     }
-    
-

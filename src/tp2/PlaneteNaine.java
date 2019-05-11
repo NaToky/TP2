@@ -1,6 +1,7 @@
 package tp2;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class PlaneteNaine extends CorpsCeleste implements Serializable {
 
@@ -19,5 +20,9 @@ public class PlaneteNaine extends CorpsCeleste implements Serializable {
     public String getType() {
         return type;
     }
-
+    
+    public String toString(){
+            return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
+                    + this.getRayon() + " km" + " \nType: " + this.type + "Satellites: " + Arrays.toString(satellites) +  "\n**************" ;
+        }
 }

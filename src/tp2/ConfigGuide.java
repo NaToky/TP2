@@ -12,6 +12,7 @@ public class ConfigGuide {
     private int iD = 0, nbrCC = 0, nbrLunes = 0;
     private boolean atmosphere = false, eau = false, recommencer = true;
     private double rayon = 0.00, gravite = 0.00, tempMax = 0.00, tempMin = 0.00, tempMoy = 0.00, pourcentageRayon = 0.00, pourcentageAtmosphere = 0.00, pourcentageGravite = 0.00, pourcentageEau = 0.00, pourcentageTempMin = 0.00, pourcentageTempMax = 0.00, pourcentageTempMoy = 0.00;
+    private ArrayList<CorpsCeleste> listePlanetesID = new ArrayList();
 
     protected void main() throws IOException {
         recommencerProgramme();
@@ -56,7 +57,7 @@ public class ConfigGuide {
                         entrerTypeDAstre();
                         break;
                     case 3:
-                        supprimerPlanetes(LecEcrFichier.listePlanetes,LecEcrFichier.listePlanetesCroissant,LecEcrFichier.listePlanetes);
+                        supprimerPlanetes(LecEcrFichier.listePlanetes);
                         break;
                     case 4:
                         afficherStatistiques();
@@ -76,13 +77,13 @@ public class ConfigGuide {
     }
 
     private int getID() {
-        if(LecEcrFichier.listePlanetes.isEmpty()){
+        if (LecEcrFichier.listePlanetes.isEmpty()) {
             iD = 0;
-        }else {
+        } else {
             int iDmax = 0;
             for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
-                if(LecEcrFichier.listePlanetes.get(i).getID() >= iDmax){
-                    iDmax = LecEcrFichier.listePlanetes.get(i).getID() + 1; 
+                if (LecEcrFichier.listePlanetes.get(i).getID() >= iDmax) {
+                    iDmax = LecEcrFichier.listePlanetes.get(i).getID() + 1;
                 }
             }
             iD = iDmax;
@@ -116,11 +117,11 @@ public class ConfigGuide {
                         System.out.println("");
                         break;
                     case 2:
-                        System.out.println(getNom());
-                        System.out.println();
+                        afficherNbrPlanetes();
+                        System.out.println("");
                         break;
                     case 3:
-                        System.out.println(nbrLunes);
+                        afficherNbrLunes();
                         System.out.println("");
                         break;
                 }
@@ -130,6 +131,15 @@ public class ConfigGuide {
                 System.out.print("Veuillez entrer un nombre entre 1 et 3: ");
             }
         }
+
+    }
+
+    private void afficherNbrPlanetes() {
+        for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
+        }
+    }
+
+    private void afficherNbrLunes() {
 
     }
 
@@ -590,7 +600,7 @@ public class ConfigGuide {
         tempMax = getTempMax();
         System.out.print("Veuillez entrer la temperature moyenne observable sur la planete tellurique decouverte: ");
         tempMoy = getTempMoy();
-        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete gazeuse decouverte (max: 10): ");
+        System.out.print("Veuillez entrer le nombre de satellites gravitant autour de la planete tellurique decouverte (max: 10): ");
         satellites = getSatellites();
         compatibilite = getCompatibilite();
         System.out.println("Compatibilite pour les terriens: " + String.format("%.2f", compatibilite) + "% \n");
@@ -667,9 +677,12 @@ public class ConfigGuide {
 
     }
 
-    private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes,ArrayList<CorpsCeleste> listePlanetesCroissant,ArrayList<CorpsCeleste> listePlanetesDecroissant) {
-        LecEcrFichier.afficherEncyclopedie();
+    private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes) {
+
+        afficherParID(LecEcrFichier.listePlanetes);
+
         System.out.println("Entrer le ID de la planete a supprimer: ");
+        nbrCC--;
         int choixID;
         int supp = 0;
         boolean boucle = true;
@@ -678,16 +691,16 @@ public class ConfigGuide {
                 choixID = Integer.parseInt(entree.nextLine());
                 int i = 0;
                 while (i != listePlanetes.size()) {
-                    if(listePlanetes.get(i).getID() == choixID){
+                    if (listePlanetes.get(i).getID() == choixID) {
                         LecEcrFichier.listePlanetes.remove(i);
                         supp++;
-                    }else {
+                    } else {
                         i++;
                     }
                 }
-                 if(supp == 0){
-                       System.out.println("Aucun object trouve avec l'ID de: " + choixID);
-                   }
+                if (supp == 0) {
+                    System.out.println("Aucun object trouve avec l'ID de: " + choixID);
+                }
                 boucle = false;
             } catch (NumberFormatException e) {
                 System.out.println("");
@@ -695,6 +708,13 @@ public class ConfigGuide {
             }
         }
 
+    }
+
+    private void afficherParID(ArrayList<CorpsCeleste> listePlanetes) {
+        System.out.println(listePlanetes.size());
+        for (int i = 0; i < listePlanetes.size(); i++) {
+            System.out.println(listePlanetes.get(i).toString());
+        }
     }
 
 }

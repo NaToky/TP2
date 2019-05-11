@@ -11,6 +11,8 @@ public class LecEcrFichier {
 
     //Variables Globales
     public static ArrayList<CorpsCeleste> listePlanetes = new ArrayList();
+    public static ArrayList<CorpsCeleste> listePlanetesCroissant = new ArrayList();
+    public static ArrayList<CorpsCeleste> listePlanetesDecroissant = new ArrayList();
 
     public static ArrayList<CorpsCeleste> getListePlanetes() {
         return listePlanetes;
@@ -24,12 +26,9 @@ public class LecEcrFichier {
         return listePlanetesDecroissant;
     }
 
-    public static ArrayList<CorpsCeleste> listePlanetesCroissant = new ArrayList();
-    public static ArrayList<CorpsCeleste> listePlanetesDecroissant = new ArrayList();
-
     // Fonctions lecture/ecriture
 
-    protected static void ecrireFicher(ArrayList listePlanetes) throws IOException {
+    protected static void ecrireFicher(ArrayList listePlanetes) {
         try {
             FileOutputStream fos = new FileOutputStream("guide.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos);

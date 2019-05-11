@@ -44,5 +44,12 @@ public class CorpsCeleste implements Serializable {
         this.rayon = Rayon;
     }
     
+    public String OuiNon(boolean Fr){
+        if(Fr){
+            return "oui";
+        }else
+            return "non";
+    }
+    
     
 }
