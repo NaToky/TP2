@@ -26,7 +26,6 @@ public class LecEcrFichier {
     }
 
     // Fonctions lecture/ecriture
-
     protected static void ecrireFicher(ArrayList listePlanetes) {
         try {
             FileOutputStream fos = new FileOutputStream("guide.bin");
@@ -51,7 +50,7 @@ public class LecEcrFichier {
         } catch (java.io.IOException e) {
             System.out.println("Erreur d'entrées-sorties");
 
-        }catch (ClassNotFoundException cnfe){
+        } catch (ClassNotFoundException cnfe) {
             System.out.println("Classe non trouve");
         }
     }
@@ -59,13 +58,13 @@ public class LecEcrFichier {
     //Fonctions de tri
     private static ArrayList triInsertion() {
         System.out.println("Grandeur liste simple: " + listePlanetes.size());
-        
-           listePlanetesCroissant.clear();
-           
+
+        listePlanetesCroissant.clear();
+
         for (int i = 0; i < listePlanetes.size(); i++) {
             listePlanetesCroissant.add(listePlanetes.get(i));
         }
-            System.out.println("Grandeur: " + listePlanetesCroissant.size());
+        System.out.println("Grandeur: " + listePlanetesCroissant.size());
         for (int i = 1; i < listePlanetesCroissant.size(); i++) {
             CorpsCeleste obj = listePlanetesCroissant.get(i);
             int valeur = (int) Character.toUpperCase(listePlanetesCroissant.get(i).getNom().charAt(0));
@@ -84,14 +83,13 @@ public class LecEcrFichier {
         return listePlanetesCroissant;
     }
 
-
     private static ArrayList triInverse() {
         listePlanetesDecroissant.clear();
-        for (int i = listePlanetesCroissant.size()-1; i >= 0; i--) {
-            if(listePlanetesCroissant.isEmpty()){
+        for (int i = listePlanetesCroissant.size() - 1; i >= 0; i--) {
+            if (listePlanetesCroissant.isEmpty()) {
                 return null;
-            }else{
-            listePlanetesDecroissant.add(listePlanetesCroissant.get(i));
+            } else {
+                listePlanetesDecroissant.add(listePlanetesCroissant.get(i));
             }
         }
         return listePlanetesDecroissant;
@@ -99,30 +97,29 @@ public class LecEcrFichier {
 
     //Affichage de la liste Croissante/Decroissante
     public static void afficherEncyclopedie() {
-        
+
         listePlanetesCroissant = triInsertion();
         listePlanetesDecroissant = triInverse();
-        
-        
+
         System.out.println("***********Guide du Routard Galactique (Croissant)*******");
         for (int i = 0; i < listePlanetesCroissant.size(); i++) {
-            if(listePlanetesCroissant.isEmpty()){
+            if (listePlanetesCroissant.isEmpty()) {
                 System.out.println("La liste est vide");
-            }else {
-            System.out.println(listePlanetesCroissant.get(i).toString());
+            } else {
+                System.out.println(listePlanetesCroissant.get(i).toString());
             }
-            
+
         }
         System.out.println("*********************************************************");
         System.out.println("***********Guide du Routard Galactique (Decroissant)*******");
         for (int i = 0; i < listePlanetes.size(); i++) {
-            if(listePlanetesCroissant.isEmpty()){
+            if (listePlanetesCroissant.isEmpty()) {
                 System.out.println("La liste est vide");
-            }else {
-            System.out.println(listePlanetesDecroissant.get(i).toString());
+            } else {
+                System.out.println(listePlanetesDecroissant.get(i).toString());
             }
         }
         System.out.println("*********************************************");
- }
+    }
 
 }

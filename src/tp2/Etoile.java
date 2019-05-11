@@ -20,21 +20,18 @@ public class Etoile extends CorpsCeleste implements Serializable {
         this.masse = masse;
         this.planetesLiees = planetesLiees;
         this.phase = phase;
-        }
-    
-        @Override
-        public String toString(){
-            return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
-                    + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg" +
-                    " \nPhase: " + this.phase + "\nPlanetes liee: " + Arrays.toString(this.planetesLiees) + "\n**************" ;
-        }
-        @Override
-        public String getType(){
-            return "Etoile";
-        }
+    }
 
-    public int getStade() {
-        return stade;
+    @Override
+    public String toString() {
+        return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: "
+                + this.getRayon() + " km" + " \nMasse: " + this.masse + " kg"
+                + " \nPhase: " + this.phase + "\nPlanetes liee: " + Arrays.toString(this.planetesLiees) + "\n**************";
+    }
+
+    @Override
+    public String getType() {
+        return "Etoile";
     }
 
     public int getPhase() {
@@ -48,7 +45,5 @@ public class Etoile extends CorpsCeleste implements Serializable {
     public String[] getPlanetesLiees() {
         return planetesLiees;
     }
-        
 
-
-    }
+}

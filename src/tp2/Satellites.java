@@ -18,12 +18,13 @@ public class Satellites extends CorpsCeleste implements Serializable {
     public void setPlaneteLiee(String planeteLiee) {
         this.planeteLiee = planeteLiee;
     }
+
     @Override
-    public String toString(){
-        return "Nom: " + this.getNom() + "ID: " + this.getID();
+    public String toString() {
+        return "Nom: " + this.getNom() + "\n ID: " + this.getID();
     }
-            public String getType(){
-            return "Satellite";
-        }
+
+    public String getType() {
+        return "Satellite";
+    }
 }
- 
