@@ -23,9 +23,13 @@ public class PlaneteNaine extends CorpsCeleste implements Serializable {
     
     public String toString(){
             return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
-                    + this.getRayon() + " km" + " \nType: " + this.type + "Satellites: " + Arrays.toString(satellites) +  "\n**************" ;
+                    + this.getRayon() + " km" + " \nType: " + this.gettype() + "\nSatellites: " + Arrays.toString(satellites) +  "\n**************" ;
         }
             public String getType(){
             return "PlaneteNaine";
         }
+
+    public String[] getSatellites() {
+        return satellites;
+    }
 }

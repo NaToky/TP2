@@ -32,6 +32,22 @@ public class Etoile extends CorpsCeleste implements Serializable {
         public String getType(){
             return "Etoile";
         }
+
+    public int getStade() {
+        return stade;
+    }
+
+    public int getPhase() {
+        return phase;
+    }
+
+    public double getMasse() {
+        return masse;
+    }
+
+    public String[] getPlanetesLiees() {
+        return planetesLiees;
+    }
         
 
 

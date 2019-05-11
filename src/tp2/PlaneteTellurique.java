@@ -36,4 +36,40 @@ public class PlaneteTellurique extends CorpsCeleste implements Serializable {
             public String getType(){
             return "PlaneteTellurique";
         }
+
+    public boolean isAtmosphere() {
+        return atmosphere;
+    }
+
+    public boolean isVie() {
+        return vie;
+    }
+
+    public boolean isEau() {
+        return eau;
+    }
+
+    public double getGravite() {
+        return gravite;
+    }
+
+    public double getTempMin() {
+        return TempMin;
+    }
+
+    public double getTempMax() {
+        return TempMax;
+    }
+
+    public double getTempMoy() {
+        return TempMoy;
+    }
+
+    public String[] getSatellites() {
+        return Satellites;
+    }
+
+    public double getCompatibilite() {
+        return Compatibilite;
+    }
 }

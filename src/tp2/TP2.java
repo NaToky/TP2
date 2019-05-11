@@ -7,7 +7,7 @@ public class TP2 {
 
     
     
-    public static void main(String[] args) throws FileNotFoundException, IOException, ClassNotFoundException {
+    public static void main(String[] args) throws IOException  {
         LecEcrFichier.lectureFichier();
         ConfigGuide configGuide = new ConfigGuide();
         configGuide.main();
