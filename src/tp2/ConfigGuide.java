@@ -745,20 +745,22 @@ public class ConfigGuide {
             }
             
         }
-        afficherParType(choix);
+        
         return choix;
     }
     
-    private void afficherParType(int choix){
+    private boolean afficherParType(int choix){
         int o = 0;
         if(choix == 1){
             for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
                 if("PlaneteTellurique".equals(LecEcrFichier.listePlanetes.get(i).getType())){
                     System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
-                    o++;        
+                    o++; 
+                    return true;
                 }
-                if(o == 0){
+                if(o == 0){        
                     System.out.println("Il n'y a pas de corps celeste de se type");
+                    return false;
                 }
             }
         }else if(choix == 2){
@@ -766,9 +768,11 @@ public class ConfigGuide {
                 if("PlaneteGazeuse".equals(LecEcrFichier.listePlanetes.get(i).getType())){
                     System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
                     o++;
+                    return true;
                 }
                 if(o == 0){
                     System.out.println("Il n'y a pas de corps celeste de se type");
+                    return false;
                 }
             }
         }else if(choix == 3){
@@ -776,9 +780,11 @@ public class ConfigGuide {
                 if("PlaneteNaine".equals(LecEcrFichier.listePlanetes.get(i).getType())){
                     System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
                     o++;
+                    return true;
                 }
                 if(o == 0){
                     System.out.println("Il n'y a pas de corps celeste de se type");
+                    return false;
                 }
             }
         }else if(choix == 4){
@@ -786,9 +792,11 @@ public class ConfigGuide {
                 if("Etoile".equals(LecEcrFichier.listePlanetes.get(i).getType())){
                     System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
                     o++;
+                    return true;
                 }
                 if(o == 0){
                     System.out.println("Il n'y a pas de corps celeste de se type");
+                    return false;
                 }
             }
         }else if(choix == 5) {
@@ -796,12 +804,15 @@ public class ConfigGuide {
                 if("Satellite".equals(LecEcrFichier.listePlanetes.get(i).getType())){
                 System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
                 o++;
+                return true;
                 }
                 if(o == 0){
                     System.out.println("Il n'y a pas de corps celeste de se type");
+                    return false;
                 }
             }
         }
+       return false;
     }
     private void modifierCorps(){
         int choixID;
@@ -875,8 +886,10 @@ public class ConfigGuide {
                 }
                 switch (menu) {
                     case 1:
-                        choixType();
+                        
+                        afficherParType(choixType());
                         supprimerPlanetes(LecEcrFichier.listePlanetes);
+                        
                         break;
                     case 2:
                         choixType();
