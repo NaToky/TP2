@@ -2,7 +2,6 @@ package tp2;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class LecEcrFichier {
 
     }
 
-    protected static void lectureFichier() throws ClassNotFoundException {
+    protected static void lectureFichier() {
 
         try {
             FileInputStream fichier = new FileInputStream("guide.bin");
@@ -52,6 +51,8 @@ public class LecEcrFichier {
         } catch (java.io.IOException e) {
             System.out.println("Erreur d'entrées-sorties");
 
+        }catch (ClassNotFoundException cnfe){
+            System.out.println("Classe non trouve");
         }
     }
 
@@ -102,15 +103,6 @@ public class LecEcrFichier {
         listePlanetesCroissant = triInsertion();
         listePlanetesDecroissant = triInverse();
         
-        System.out.println("***********Guide du Routard Galactique (Simple)*******");
-        for (int i = 0; i < listePlanetes.size(); i++) {
-            if(listePlanetes.isEmpty()){
-                System.out.println("La liste est vide");
-            }else {
-            System.out.println(listePlanetes.get(i).toString());
-            }
-            
-        }
         
         System.out.println("***********Guide du Routard Galactique (Croissant)*******");
         for (int i = 0; i < listePlanetesCroissant.size(); i++) {
@@ -121,7 +113,7 @@ public class LecEcrFichier {
             }
             
         }
-        System.out.println("*********************************************");
+        System.out.println("*********************************************************");
         System.out.println("***********Guide du Routard Galactique (Decroissant)*******");
         for (int i = 0; i < listePlanetes.size(); i++) {
             if(listePlanetesCroissant.isEmpty()){
