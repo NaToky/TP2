@@ -33,9 +33,6 @@ public class Etoile extends CorpsCeleste implements Serializable {
             return "Etoile";
         }
 
-    public int getStade() {
-        return stade;
-    }
 
     public int getPhase() {
         return phase;

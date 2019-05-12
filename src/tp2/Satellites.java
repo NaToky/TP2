@@ -20,7 +20,7 @@ public class Satellites extends CorpsCeleste implements Serializable {
     }
     @Override
     public String toString(){
-        return "Nom: " + this.getNom() + "ID: " + this.getID();
+        return "\n**************" +"\nNom: " + this.getNom() + "\nID: " + this.getID() + "\n**************";
     }
             public String getType(){
             return "Satellite";

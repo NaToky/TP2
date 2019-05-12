@@ -5,6 +5,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class LecEcrFichier {
 
@@ -58,26 +59,20 @@ public class LecEcrFichier {
 
     //Fonctions de tri
     private static ArrayList triInsertion() {
-        System.out.println("Grandeur liste simple: " + listePlanetes.size());
         
            listePlanetesCroissant.clear();
            
         for (int i = 0; i < listePlanetes.size(); i++) {
             listePlanetesCroissant.add(listePlanetes.get(i));
         }
-            System.out.println("Grandeur: " + listePlanetesCroissant.size());
         for (int i = 1; i < listePlanetesCroissant.size(); i++) {
             CorpsCeleste obj = listePlanetesCroissant.get(i);
             int valeur = (int) Character.toUpperCase(listePlanetesCroissant.get(i).getNom().charAt(0));
-            System.out.println("Index: " + i);
             int position = i;
-            System.out.println("valeur: " + valeur);
             while (position > 0 && (int) Character.toUpperCase(listePlanetesCroissant.get(position - 1).getNom().charAt(0)) > valeur) {
-                System.out.println("Le numero " + (int) Character.toUpperCase(listePlanetesCroissant.get(position - 1).getNom().charAt(0)) + " est plus grand que " + valeur);
                 listePlanetesCroissant.set(position, listePlanetesCroissant.get(position - 1));
                 position--;
             }
-            System.out.println("Je vais mettre la valeur " + valeur + " dans la position " + position);
             listePlanetesCroissant.set(position, obj);
         }
 
@@ -124,5 +119,67 @@ public class LecEcrFichier {
         }
         System.out.println("*********************************************");
  }
+    public static void afficherParEtoile(){
+        
+        for (int i = 0; i < listePlanetes.size(); i++) {
+            if(LecEcrFichier.listePlanetes.get(i).getType().equals("Etoile")){
+                System.out.println(listePlanetes.get(i).toString());
+            }
+        }
+        
+        int choix = 0;
+        int i = 0;
+        int aucun = 0;
+        boolean boucle = true;
+        while (boucle) {
+            try {
+                System.out.println("Veillez entrer le ID de l'Etoile: ");
+                Scanner entree = new Scanner(System.in);
+                choix = Integer.parseInt(entree.nextLine());
+                System.out.println("Corps Celestes liees a l'etoile: ");
+                while (i != listePlanetes.size()) {
+                    
+                    if (listePlanetes.get(i).getID() == choix && "Etoile".equals(LecEcrFichier.listePlanetes.get(i).getType())) {
+                        String[] planeteLiee = listePlanetes.get(i).getPlanetesLiees();
+                        for (int j = 0; j < planeteLiee.length; j++) {
+                            for (int k = 0; k < listePlanetes.size(); k++) {
+                                if(listePlanetes.get(k).getNom().equals(planeteLiee[j])){
+                                    System.out.println(listePlanetes.get(k).toString());              
+                                }     
+                            }
+                        }
+                        
+                       for (int j = 0; j < listePlanetes.size(); j++) {
+                           for (int k = 0; k < planeteLiee.length; k++) {
+                               if(listePlanetes.get(j).getNom().equals(planeteLiee[k])){
+                                   String[] satellites = listePlanetes.get(j).getSatellites();
+                            for (int l = 0; l < satellites.length; l++) {
+                            for (int p = 0; p < listePlanetes.size(); p++) {
+                                if(listePlanetes.get(p).getNom().equals(satellites[l])){
+                                    System.out.println(listePlanetes.get(p).toString());              
+                                }     
+                            }
+                        }
+                               }
+                           }
+                          
+                       }
+                        aucun++;
+                    }
+                    i++;
+                }
+                if (aucun == 0) {
+                    System.out.println("Aucun object (Etoile) trouve avec l'ID de: " + choix);
+                }
+ 
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre entre 1-5");
+            }
+
+        }
+    }
+    
 
 }

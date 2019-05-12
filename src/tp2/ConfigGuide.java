@@ -10,7 +10,6 @@ public class ConfigGuide {
     private int iD = 0, nbrCC = 0, nbrLunes = 0;
     private boolean atmosphere = false, eau = false, recommencer = true;
     private double rayon = 0.00, gravite = 0.00, tempMax = 0.00, tempMin = 0.00, tempMoy = 0.00, pourcentageRayon = 0.00, pourcentageAtmosphere = 0.00, pourcentageGravite = 0.00, pourcentageEau = 0.00, pourcentageTempMin = 0.00, pourcentageTempMax = 0.00, pourcentageTempMoy = 0.00;
-    private ArrayList<CorpsCeleste> listePlanetesID = new ArrayList();
 
     protected void main() {
         recommencerProgramme();
@@ -54,7 +53,7 @@ public class ConfigGuide {
                 }
                 switch (menu) {
                     case 1:
-                        LecEcrFichier.afficherEncyclopedie();
+                        afficherLecture();
                         break;
                     case 2:
                         afficherTypeDAstre();
@@ -846,7 +845,6 @@ public class ConfigGuide {
 
     private void supprimerPlanetes(ArrayList<CorpsCeleste> listePlanetes) {
 
-        afficherParID(LecEcrFichier.listePlanetes);
 
         System.out.println("Entrer le ID de la planete a supprimer: ");
         nbrCC--;
@@ -890,7 +888,7 @@ public class ConfigGuide {
         while (boucle) {
             try {
                 System.out.println("Liste de types de Corps Celestes");
-                System.out.println("\n1- Planète tellurique \n2- Planète gazeuse \n3- Planète naine \n4- Étoile \n5- Lune ");
+                System.out.println("\n1- Planète tellurique \n2- Planète gazeuse \n3- Planète naine \n4- Étoile \n5- Satellite ");
                 System.out.println("Entrer le type a afficher (1-5): ");
                 choix = Integer.parseInt(entree.nextLine());
                 while (choix < 1 || choix > 5) {
@@ -908,71 +906,7 @@ public class ConfigGuide {
         
         return choix;
     }
-<<<<<<< HEAD
-    
-    private boolean afficherParType(int choix){
-        int o = 0;
-        if(choix == 1){
-            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
-                if("PlaneteTellurique".equals(LecEcrFichier.listePlanetes.get(i).getType())){
-                    System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
-                    o++; 
-                    return true;
-                }
-                if(o == 0){        
-                    System.out.println("Il n'y a pas de corps celeste de se type");
-                    return false;
-                }
-            }
-        }else if(choix == 2){
-            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
-                if("PlaneteGazeuse".equals(LecEcrFichier.listePlanetes.get(i).getType())){
-                    System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
-                    o++;
-                    return true;
-                }
-                if(o == 0){
-                    System.out.println("Il n'y a pas de corps celeste de se type");
-                    return false;
-                }
-            }
-        }else if(choix == 3){
-            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
-                if("PlaneteNaine".equals(LecEcrFichier.listePlanetes.get(i).getType())){
-                    System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
-                    o++;
-                    return true;
-                }
-                if(o == 0){
-                    System.out.println("Il n'y a pas de corps celeste de se type");
-                    return false;
-                }
-            }
-        }else if(choix == 4){
-            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
-                if("Etoile".equals(LecEcrFichier.listePlanetes.get(i).getType())){
-                    System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
-                    o++;
-                    return true;
-                }
-                if(o == 0){
-                    System.out.println("Il n'y a pas de corps celeste de se type");
-                    return false;
-                }
-            }
-        }else if(choix == 5) {
-            for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
-                if("Satellite".equals(LecEcrFichier.listePlanetes.get(i).getType())){
-                System.out.println(LecEcrFichier.listePlanetes.get(i).toString());
-                o++;
-                return true;
-                }
-                if(o == 0){
-                    System.out.println("Il n'y a pas de corps celeste de se type");
-                    return false;
-                }
-            }
-=======
+
 
     private void afficherParType(int choix) {
         int o = 0;
@@ -986,7 +920,8 @@ public class ConfigGuide {
                     if (o == 0) {
                         System.out.println("Il n'y a pas de corps celeste de se type");
                     }
-                }   break;
+                }
+                break;
             case 2:
                 for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
                     if ("PlaneteGazeuse".equals(LecEcrFichier.listePlanetes.get(i).getType())) {
@@ -996,7 +931,8 @@ public class ConfigGuide {
                     if (o == 0) {
                         System.out.println("Il n'y a pas de corps celeste de se type");
                     }
-                }   break;
+                } 
+                break;
             case 3:
                 for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
                     if ("PlanaiteNaine".equals(LecEcrFichier.listePlanetes.get(i).getType())) {
@@ -1008,7 +944,8 @@ public class ConfigGuide {
                             System.out.println("Il n'y a pas de corps celeste de se type");
                         }
                     }
-                }   break;
+                }  
+                break;
             case 4:
                 for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
                     if ("Etoile".equals(LecEcrFichier.listePlanetes.get(i).getType())) {
@@ -1018,7 +955,8 @@ public class ConfigGuide {
                     if (o == 0) {
                         System.out.println("Il n'y a pas de corps celeste de se type");
                     }
-                }   break;
+                }  
+                break;
             case 5:
                 for (int i = 0; i < LecEcrFichier.listePlanetes.size(); i++) {
                     if ("Satellite".equals(LecEcrFichier.listePlanetes.get(i).getType())) {
@@ -1031,10 +969,10 @@ public class ConfigGuide {
                             System.out.println("Il n'y a pas de corps celeste de se type");
                         }
                     }
-                }   break;
->>>>>>> 5584ad535742505c83b8c1d764170c8aafab2377
+                }  
+                break;
         }
-       return false;
+      
     }
 
     private void modifierCorps() {
@@ -1135,5 +1073,35 @@ public class ConfigGuide {
         System.out.println("    2- Modifier un corps celeste ");
         System.out.print("Choix: ");
     }
+    
+    private void afficherLecture(){
+        boolean boucle = true;
+        int menu;
+        while (boucle) {
+            try {
+                System.out.println("1- Afficher Encyclopedie \n2- Afficher par Etoile");
+                System.out.print("Veuillez entrer un nombre entre 1 et 2: ");
+                menu = Integer.parseInt(entree.nextLine());
+                System.out.println("");
+                while (menu < 1 || menu > 2) {
+                    menu = Integer.parseInt(entree.nextLine());
+                    System.out.println("");
+                }
+                switch (menu) {
+                    case 1:
+                        LecEcrFichier.afficherEncyclopedie();
+                        break;
+                    case 2:
+                        LecEcrFichier.afficherParEtoile();
+                        break;
+                }
+                boucle = false;
+            } catch (NumberFormatException e) {
+                System.out.println("");
+                System.out.print("Veuillez entrer un nombre entre 1 et 3: ");
+            }
+        }
+    }
+            
 
 }

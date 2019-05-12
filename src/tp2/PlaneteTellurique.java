@@ -29,9 +29,9 @@ public class PlaneteTellurique extends CorpsCeleste implements Serializable {
     }
     public String toString(){
         return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
-          + this.getRayon() + " km" + " \nAtmosphere: " + OuiNon(this.atmosphere) + "Satellites: " + "Vie: " + OuiNon(this.vie) + "Eau: "
-                + OuiNon(this.eau) + "Gravite: " + this.gravite + "Temperature Minimale: " + this.TempMin +"Temperature Maximale: " + this.TempMax +
-                "Temperature Moyenne: " + this.TempMoy + Arrays.toString(Satellites) + "Compatibilite: " + this.Compatibilite + "%" + "\n**************" ;
+          + this.getRayon() + " km" + " \nAtmosphere: " + OuiNon(this.atmosphere) + "\nSatellites: " + "\nVie: " + OuiNon(this.vie) + "\nEau: "
+                + OuiNon(this.eau) + "\nGravite: " + this.gravite + "\nTemperature Minimale: " + this.TempMin +"\nTemperature Maximale: " + this.TempMax +
+                "\nTemperature Moyenne: " + this.TempMoy + "\nSatellites" + Arrays.toString(getSatellites()) + "\nCompatibilite: " + this.Compatibilite + "%" + "\n**************" ;
         }
             public String getType(){
             return "PlaneteTellurique";
