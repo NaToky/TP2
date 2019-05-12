@@ -3,17 +3,18 @@ package tp2;
 import java.io.Serializable;
 
 public class CorpsCeleste implements Serializable {
-    
-    private int ID, nbrCC;
+
+    private int ID, nbrCC =0;
     private String nom;
     private double rayon;
-    
-    public CorpsCeleste(){
+
+    public CorpsCeleste() {
         ID = 0;
         nom = "Aucun";
         rayon = 0;
     }
-    public CorpsCeleste(int ID,String nom,double Rayon, int nbrCC){
+
+    public CorpsCeleste(int ID, String nom, double Rayon, int nbrCC) {
         this.ID = ID;
         this.nom = nom;
         this.rayon = Rayon;
@@ -39,7 +40,7 @@ public class CorpsCeleste implements Serializable {
     public void setID(int ID) {
         this.ID = ID;
     }
-    
+
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -47,57 +48,76 @@ public class CorpsCeleste implements Serializable {
     public void setRayon(double Rayon) {
         this.rayon = Rayon;
     }
-    
-    public String OuiNon(boolean Fr){
-        if(Fr){
+
+    public String OuiNon(boolean Fr) {
+        if (Fr) {
             return "oui";
-        }else
+        } else {
             return "non";
+        }
     }
-    public String getType(){
+
+    public String getType() {
         return null;
     }
-    public int getPhase(){
+
+    public int getPhase() {
         return 0;
     }
-    public double getMasse(){
+
+    public double getMasse() {
         return 0;
     }
-    public String[] getPlanetesLiees(){
+
+    public String[] getPlanetesLiees() {
         return null;
     }
-    public boolean isAtmosphere(){
+
+    public boolean isAtmosphere() {
         return false;
     }
-    public boolean isVie(){
+
+    public boolean isVie() {
         return false;
     }
-    public boolean isAnneaux(){
+
+    public boolean isAnneaux() {
         return false;
     }
-    public String[] getSatellites(){
+
+    public String[] getSatellites() {
         return null;
     }
-    public boolean isEau(){
+
+    public boolean isEau() {
         return false;
     }
-    public double getGravite(){
+
+    public double getGravite() {
         return 0;
     }
-        public double getTempMin(){
+
+    public double getTempMin() {
         return 0;
     }
-            public double getTempMax(){
+
+    public double getTempMax() {
         return 0;
     }
-                public double getTempMoy(){
+
+    public double getTempMoy() {
         return 0;
     }
-    public double getCompatibilite(){
+
+    public double getCompatibilite() {
         return 0;
     }
-    public String getPlaneteLiee(){
+
+    public String getPlaneteLiee() {
         return null;
     }
-                
+    public int getNbrSatellites(){
+        return 0;
+    }
+
 }

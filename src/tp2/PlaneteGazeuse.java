@@ -17,6 +17,7 @@ public class PlaneteGazeuse extends CorpsCeleste implements Serializable {
         this.vie = vie;
         this.satellites = satellites;
     }
+<<<<<<< HEAD
             public String toString(){
             return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
                     + this.getRayon() + " km" + " \nVie: " + OuiNon(this.vie) + "\nAnneaux: " + OuiNon(this.anneaux) + "\nSatellites: "
@@ -25,9 +26,25 @@ public class PlaneteGazeuse extends CorpsCeleste implements Serializable {
                     public String getType(){
             return "PlaneteGazeuse";
         }
+=======
+
+    public String toString() {
+        return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: "
+                + this.getRayon() + " km" + " \nVie: " + OuiNon(this.vie) + "\nAnneaux: " + OuiNon(this.anneaux) + "\nSatellites: "
+                + Arrays.toString(getSatellites()) + "\n**************";
+    }
+
+    public String getType() {
+        return "PlaneteGazeuse";
+    }
+>>>>>>> 93727feeaa6c799e91575003f10fbaa508b836a0
 
     public boolean isAtmosphere() {
         return atmosphere;
+    }
+
+    public String getPlaneteGazeuse() {
+        return "PlaneteGazeuse";
     }
 
     public boolean isVie() {

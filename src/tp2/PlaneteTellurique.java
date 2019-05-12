@@ -27,6 +27,7 @@ public class PlaneteTellurique extends CorpsCeleste implements Serializable {
         this.Satellites = Satellites;
         this.Compatibilite = Compatibilite;
     }
+<<<<<<< HEAD
     public String toString(){
         return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: " 
           + this.getRayon() + " km" + " \nAtmosphere: " + OuiNon(this.atmosphere) + "\nSatellites: " + "\nVie: " + OuiNon(this.vie) + "\nEau: "
@@ -36,6 +37,19 @@ public class PlaneteTellurique extends CorpsCeleste implements Serializable {
             public String getType(){
             return "PlaneteTellurique";
         }
+=======
+
+    public String toString() {
+        return "**************" + "\nID: " + this.getID() + " \nNom: " + this.getNom() + " \nRayon: "
+                + this.getRayon() + " km" + " \nAtmosphere: " + OuiNon(this.atmosphere) + "Satellites: " + "Vie: " + OuiNon(this.vie) + "Eau: "
+                + OuiNon(this.eau) + "Gravite: " + this.gravite + "Temperature Minimale: " + this.TempMin + "Temperature Maximale: " + this.TempMax
+                + "Temperature Moyenne: " + this.TempMoy + Arrays.toString(getSatellites()) + "Compatibilite: " + this.Compatibilite + "%" + "\n**************";
+    }
+
+    public String getType() {
+        return "PlaneteTellurique";
+    }
+>>>>>>> 93727feeaa6c799e91575003f10fbaa508b836a0
 
     public boolean isAtmosphere() {
         return atmosphere;
